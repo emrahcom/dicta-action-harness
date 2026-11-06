@@ -58,7 +58,7 @@ function load(tsconfig: string, index: string, result: Result) {
   const child = run(bin("tsx"), [
     "--tsconfig",
     tsconfig,
-    join(root, "check", "load.ts"),
+    join(root, "scripts", "check", "load.ts"),
     index,
   ]);
   const line = child.stdout

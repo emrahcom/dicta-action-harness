@@ -8,7 +8,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "check": "tsx check/index.ts",
+    "check": "tsx scripts/check/index.ts",
     "server": "tsx --env-file-if-exists=.env node_modules/dicta-action-server/src/index.ts"
   },
   "dependencies": {
