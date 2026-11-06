@@ -20,7 +20,7 @@ code is and how to start it for tests.
    site and fix every type error in the module.
 5. Try it on the running site. Add dicta to the site as
    `docs/adding-dicta.md` says, and try requests in plain words for each
-   capability.
+   capability, and a request that clears each value that can be cleared.
 
 ## Rules
 

@@ -160,8 +160,51 @@ The outputs the planner reads share 16 KB per plan. The state has at most 16
 KB too. Return only what a planner needs, such as ids, names and dates, not
 whole records.
 
-### Clearing a value is not possible yet
+### Values that can be cleared
 
-A schema field has one `type`, so an argument cannot be "a date or nothing".
-A capability cannot clear a value through an argument today, such as removing
-a planned date.
+Some values can be empty, such as a recipe's planned date. Give such an
+argument the type list `["<type>", "null"]`, so a plan can clear it:
+
+```ts
+type ChangeArgs = { id: string; title?: string; planned?: string | null };
+
+"recipes.change": {
+  level: "write",
+  desc: "Changes a recipe's title or planned date, or removes the date.",
+  args: {
+    type: "object",
+    properties: {
+      id: { type: "string", description: "The recipe's id" },
+      title: { type: "string" },
+      planned: {
+        type: ["string", "null"],
+        description: "Date, YYYY-MM-DD, or null to remove it",
+      },
+    },
+    required: ["id"],
+  },
+  confirm: async ({ id }: ChangeArgs) =>
+    `Change "${(await getRecipe(id)).title}"`,
+  run: async ({ id, ...changes }: ChangeArgs) => {
+    await updateRecipe(id, changes);
+  },
+},
+```
+
+In `run`, each such argument has three cases:
+
+- Left out: change nothing.
+- `null`: clear the value, the way your site does it. Find what your site's
+  "remove" button calls, and do the same.
+- Any other value: set it.
+
+Take care that a missing argument does not turn into `undefined` or `null` on
+its way to your site's code. Pass on only the arguments the plan gave, as the
+example does with `...changes`.
+
+An output field that can be empty gets the same type list, such as
+`planned: { type: ["string", "null"] }`, so the planner knows it can be `null`.
+
+Use type lists only for "a type or `null`". When you try the module, also try a
+request that clears each value that can be cleared, such as "remove the
+planned date of the lemon cake".
