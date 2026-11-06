@@ -21,9 +21,11 @@ fits your site, and write it in the site's `notes.md`, so the next session uses
 it too:
 
 - An import alias: the module imports your code with a fixed name, such as
-  `recipe-box/api`. In the harness, `paths` in `tsconfig.json` maps the name to
-  your site's code. In your site, your bundler, such as Vite or webpack, maps it
-  too. The copy is the same file. Good for sites built with a bundler.
+  `recipe-box/api`. In the harness, `paths` in the module's `tsconfig.json` or
+  `tsconfig.local.json` maps the name to your site's code
+  (`checking-the-module.md`). In your site, your bundler, such as Vite or
+  webpack, maps it too. The copy is the same file. Good for sites built with a
+  bundler.
 - Relative imports: the imports are changed to paths in your site when the
   module is copied. Good when you cannot change the bundler's settings.
 - A separate bundle: the module and `dicta-action-js` are bundled into one

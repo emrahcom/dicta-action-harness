@@ -1,0 +1,21 @@
+{
+  "name": "dicta-action-harness",
+  "version": "0.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "check": "tsx check/index.ts"
+  },
+  "dependencies": {
+    "@happy-dom/global-registrator": "21.0.4",
+    "dicta-action-js": "0.1.1",
+    "dicta-action-server": "github:emrahcom/dicta-action-server#17fc47aca27ab5f095fd934d050d65aaa956bd40",
+    "happy-dom": "21.0.4",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  }
+}

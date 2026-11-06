@@ -19,6 +19,7 @@ repo is public, and your copy will hold notes about your sites.
    git remote rename origin upstream
    git remote add origin git@github.com:acme/dicta.git
    git push -u origin main
+   npm install
    ```
 
 3. Open your agent in this folder, such as Claude Code or Codex.
@@ -39,6 +40,7 @@ and checks your sites' modules against it. `docs/upgrading.md` tells the rest.
 - `docs/getting-started.md`: how the harness works, step by step.
 - `docs/writing-capabilities.md`: how to write a good module.
 - `docs/adding-dicta.md`: how to put dicta into your site.
+- `docs/checking-the-module.md`: how to check the module and try it.
 - `docs/upgrading.md`: how to move to a new version.
 
 ## License

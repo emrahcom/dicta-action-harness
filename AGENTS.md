@@ -21,7 +21,10 @@ folder, and nowhere else in the harness:
 If the site's folder exists, read its `notes.md` before anything else. If it
 does not, it is a new site: ask the developer for a short name, where the
 site's code is, or only where the running site is, and how to start it for
-tests. Then create the folder with its `notes.md`.
+tests. Then create the folder with its `notes.md`, and `module/tsconfig.json`
+as `docs/checking-the-module.md` shows. A path that differs from machine to
+machine goes into `module/tsconfig.local.json`, never committed; on a new
+machine, write it again from `notes.md`.
 
 Keep the site's `notes.md` up to date as you work, so another session or
 another developer goes on from the same point. It holds:
@@ -41,8 +44,8 @@ another developer goes on from the same point. It holds:
    Show the list to the developer before you go on.
 3. Write the module in `sites/<name>/module/`. Follow
    `docs/writing-capabilities.md`.
-4. Check the module. The check command is not written yet: for now, fix every
-   type error in the module.
+4. Run `npm run check -- <name>` and fix every error. Read every warning
+   (`docs/checking-the-module.md`).
 5. Integrate the module into the site only when the developer asks. Otherwise
    give them the steps in `docs/adding-dicta.md` for their site. Choose the
    integration method with the developer, and write it in the site's
@@ -56,8 +59,9 @@ another developer goes on from the same point. It holds:
 When the developer asks you to update the harness:
 
 1. Merge `upstream/main`, the original harness, into the current branch.
-2. Review every site's module against the updated guides.
-3. Report what you found for each site. Change a module only when the developer
+2. Run `npm install`, then `npm run check` on every site.
+3. Review every site's module against the updated guides.
+4. Report what you found for each site. Change a module only when the developer
    agrees.
 
 `docs/upgrading.md` tells the developer what comes next for sites in
