@@ -18,6 +18,7 @@ The check needs no browser and no server. It finds:
 - type errors in the module;
 - a site context that `dicta-action-server` would refuse, checked with the
   server's own code;
+- a site context larger than 64 KB;
 - a `write`, `destructive` or `external` capability without `confirm`;
 - a `confirmOver` that is not a whole number from 0.
 

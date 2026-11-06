@@ -7,6 +7,9 @@ import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { pathToFileURL } from "node:url";
 
 const MARK = "dicta-check-result:";
+// The most bytes of a site context (contract-protocol.md in
+// dicta-action-server, Limits).
+const MAX_CONTEXT = 64 * 1024;
 
 type Result = { errors: string[]; warnings: string[]; notLoaded?: string };
 type Schema = { type?: unknown; properties?: unknown; items?: unknown };
@@ -69,6 +72,13 @@ if (typeof module !== "object" || module === null) {
 // as the module does.
 try {
   const context = buildContext(module);
+  const size = Buffer.byteLength(JSON.stringify(context), "utf8");
+  if (size > MAX_CONTEXT) {
+    errors.push(
+      `the site context is ${Math.ceil(size / 1024)} KB, more than 64 KB. ` +
+        "Shorten site.desc and the capabilities' desc",
+    );
+  }
   try {
     checkContext(context);
   } catch (error) {
