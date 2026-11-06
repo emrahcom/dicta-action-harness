@@ -8,17 +8,17 @@ does not change your site unless you ask.
 
 ## The module in your site
 
-The module is made in the harness, in `site/module/`. Your site gets a copy of
-it.
+The module is made in the harness, in `sites/<name>/module/`. Your site gets a
+copy of it.
 
-- Never change the copy in your site. Change `site/module/`, check it, and copy
-  it again.
-- The copy in your site may be older than `site/module/` while you work on new
-  capabilities. That is fine.
+- Never change the copy in your site. Change `sites/<name>/module/`, check it,
+  and copy it again.
+- The copy in your site may be older than `sites/<name>/module/` while you work
+  on new capabilities. That is fine.
 
 There is more than one way to put the copy into your site. Choose the one that
-fits your site, and write it in `site/notes.md`, so the next session uses it
-too:
+fits your site, and write it in the site's `notes.md`, so the next session uses
+it too:
 
 - An import alias: the module imports your code with a fixed name, such as
   `recipe-box/api`. In the harness, `paths` in `tsconfig.json` maps the name to
@@ -45,7 +45,7 @@ without them ends the request.
 
 ```ts
 import { DictaAction } from "dicta-action-js";
-import recipeBox from "./dicta-module"; // the copy of site/module/
+import recipeBox from "./dicta-module"; // the copy of sites/<name>/module/
 
 const action = document.querySelector<DictaAction>("dicta-action")!;
 action.getToken = async () => {

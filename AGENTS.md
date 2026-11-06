@@ -9,21 +9,22 @@ Read `docs/getting-started.md` first.
 
 ## Where your work goes
 
-Each site has its own branch of the harness. Everything you make for the site
-goes into `site/`, and nowhere else in the harness:
+Each site has its own folder, `sites/<name>/`, such as `sites/recipe-box/`.
+Work on the site the developer names. Everything you make for it goes into its
+folder, and nowhere else in the harness:
 
-- `site/module/`: the module, with its main file `site/module/index.ts`. This
-  is the only place where you change it.
-- `site/notes.md`: what you learned about the site and what you decided with
-  the developer.
+- `sites/<name>/module/`: the module, with its main file
+  `sites/<name>/module/index.ts`. This is the only place where you change it.
+- `sites/<name>/notes.md`: what you learned about the site and what you decided
+  with the developer.
 
-If `site/` exists, read `site/notes.md` before anything else. If it does not,
-you are on a new site's branch: ask the developer where the site's code is, or
-only where the running site is, and how to start it for tests. Then create
-`site/` with `site/notes.md`.
+If the site's folder exists, read its `notes.md` before anything else. If it
+does not, it is a new site: ask the developer for a short name, where the
+site's code is, or only where the running site is, and how to start it for
+tests. Then create the folder with its `notes.md`.
 
-Keep `site/notes.md` up to date as you work, so another session or another
-developer goes on from the same point. It holds:
+Keep the site's `notes.md` up to date as you work, so another session or
+another developer goes on from the same point. It holds:
 
 - where the site's code or the running site is, and how to start it;
 - the integration method, once chosen;
@@ -38,15 +39,29 @@ developer goes on from the same point. It holds:
    they send. Find how a user signs in and what a user can do.
 2. List what users can do on the site, as capabilities, each with its level.
    Show the list to the developer before you go on.
-3. Write the module in `site/module/`. Follow `docs/writing-capabilities.md`.
+3. Write the module in `sites/<name>/module/`. Follow
+   `docs/writing-capabilities.md`.
 4. Check the module. The check command is not written yet: for now, fix every
    type error in the module.
 5. Integrate the module into the site only when the developer asks. Otherwise
    give them the steps in `docs/adding-dicta.md` for their site. Choose the
-   integration method with the developer, and write it in `site/notes.md`.
+   integration method with the developer, and write it in the site's
+   `notes.md`.
 6. Try it on the running site, once the module is in it. Try requests in plain
    words for each capability, and a request that clears each value that can be
    cleared.
+
+## Updating the harness
+
+When the developer asks you to update the harness:
+
+1. Merge `upstream/main`, the original harness, into the current branch.
+2. Review every site's module against the updated guides.
+3. Report what you found for each site. Change a module only when the developer
+   agrees.
+
+`docs/upgrading.md` tells the developer what comes next for sites in
+production.
 
 ## Rules
 
@@ -56,6 +71,8 @@ developer goes on from the same point. It holds:
 - Do not change the site's code, except to integrate the module when the
   developer asks. List any problem you find for the developer instead of fixing
   it.
-- Never change the copy of the module in the site. Change `site/module/`, and
-  copy it again.
+- Never change the copy of the module in the site. Change
+  `sites/<name>/module/`, and copy it again.
+- Do not change the harness's own files. Your work goes only into the sites'
+  folders.
 - Never put secrets, such as API keys, in the module or the site's frontend.

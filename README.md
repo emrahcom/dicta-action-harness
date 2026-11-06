@@ -7,34 +7,39 @@ module.
 
 ## Start
 
-1. Fork this repo on GitHub, and clone your fork.
-2. Make a branch for your site, named after it:
+Make your own private copy of the harness. Do not fork it: a fork of a public
+repo is public, and your copy will hold notes about your sites.
+
+1. Make an empty private repo on GitHub, such as `acme/dicta`.
+2. Copy the harness into it:
 
    ```sh
-   git checkout -b recipe-box
+   git clone https://github.com/emrahcom/dicta-action-harness.git dicta
+   cd dicta
+   git remote rename origin upstream
+   git remote add origin git@github.com:acme/dicta.git
+   git push -u origin main
    ```
 
 3. Open your agent in this folder, such as Claude Code or Codex.
-4. Tell it where your site's code is, or only where your running test site is.
+4. Tell it which site to work on, and where its code is, or only where your
+   running test site is.
 
-The agent follows `AGENTS.md`. Everything it makes for your site goes into the
-`site/` folder of your branch. Commit it like any other work.
+The agent follows `AGENTS.md`. Everything it makes for a site goes into
+`sites/<name>/`, such as `sites/recipe-box/`. Commit it like any other work.
+All your sites live side by side in the same copy.
 
-To get updates of the harness, merge `main` into your site's branch:
+## Updates
 
-```sh
-git fetch upstream
-git merge upstream/main
-```
-
-`upstream` is this repo. Add it once with
-`git remote add upstream https://github.com/emrahcom/dicta-action-harness.git`.
+Ask your agent to update the harness. It gets the new version from `upstream`
+and checks your sites' modules against it. `docs/upgrading.md` tells the rest.
 
 ## Read next
 
 - `docs/getting-started.md`: how the harness works, step by step.
 - `docs/writing-capabilities.md`: how to write a good module.
 - `docs/adding-dicta.md`: how to put dicta into your site.
+- `docs/upgrading.md`: how to move to a new version.
 
 ## License
 

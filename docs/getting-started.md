@@ -20,38 +20,42 @@ the module with you.
   a recipe" or "share a recipe", and how to do it. The agent writes it here, in
   the harness. Later a copy of it goes into your site.
 
-## One branch per site
+## One folder per site
 
-Fork the harness, and make one branch for each of your sites. Get updates of
-the harness by merging `main` into your site's branch.
+Keep your own private copy of the harness (`README.md`). All your sites share
+it, each in its own folder, on the same branch.
 
-Everything the harness makes for a site is in one folder, `site/`, in the
-site's branch. It holds only two things:
+Everything the harness makes for a site is in `sites/<name>/`, such as
+`sites/recipe-box/`. It holds only two things:
 
-- `site/module/`: the module. This is the only place where it is changed.
-- `site/notes.md`: what the agent learned about the site and what you decided
-  together. For example: where the site is and how to start it, the list of
-  capabilities, the problems the agent found, and the requests it tried.
+- `sites/<name>/module/`: the module. This is the only place where it is
+  changed.
+- `sites/<name>/notes.md`: what the agent learned about the site and what you
+  decided together. For example: where the site is and how to start it, the
+  list of capabilities, the problems the agent found, and the requests it
+  tried.
 
-Commit `site/` like any other work. Then another developer, or you on another
-machine, goes on from the same point. `main` never has a `site/` folder, so the
-merges do not conflict.
+Commit `sites/` like any other work. Then another developer, or you on another
+machine, goes on from the same point. The harness itself never has a site
+folder, so its updates do not conflict with your work. Keep your work in your
+sites' folders, and do not change the harness's own files.
 
 ## What you need
 
 - A running copy of your site for tests, such as a local development server or
   a test environment.
 - Your site's source code, if you can give it to the agent. The agent only reads
-  it. Without the code, the agent works with the running site only.
+  it, unless you ask it to add dicta to your site. Without the code, the agent
+  works with the running site only.
 - An AI coding agent, such as Claude Code or Codex.
 
 ## Steps
 
-1. Make a branch for your site and open your agent in this folder.
-2. Tell it where your site's code is, or only where the running site is, and
-   how to start it for tests.
+1. Open your agent in your copy of the harness.
+2. Tell it which site to work on, where its code is, or only where the running
+   site is, and how to start it for tests.
 3. The agent follows `AGENTS.md`: it studies the site, lists what users can do,
-   and writes the module in `site/module/`.
+   and writes the module in `sites/<name>/module/`.
 4. Review the module there, like any other change. Nothing in your site has
    changed yet. Each capability runs with the user's rights, so check that it
    uses your site's own code and checks.
@@ -64,3 +68,4 @@ merges do not conflict.
 - `writing-capabilities.md`: how to write a good capability module.
 - `adding-dicta.md`: how to put the module, `dicta-action-js` and the server
   into your site.
+- `upgrading.md`: how to move to a new version.

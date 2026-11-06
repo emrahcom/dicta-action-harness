@@ -10,8 +10,8 @@ meals.
 
 ## The module
 
-The module is in `site/module/`, in your site's branch of the harness. Its main
-file is `site/module/index.ts`. Its default export is one object:
+The module is in `sites/<name>/module/`, in your copy of the harness. Its main
+file is `sites/<name>/module/index.ts`. Its default export is one object:
 
 ```ts
 import { type CapabilityModule, dictaCapabilities } from "dicta-action-js";
