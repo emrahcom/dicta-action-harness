@@ -71,6 +71,9 @@ production.
 
 ## Rules
 
+- The guides teach what a module needs. The full rules are in the contracts
+  (`docs/writing-capabilities.md`, The full rules). When a guide and a
+  contract differ, follow the contract and tell the developer.
 - Each capability calls the site's own code, or sends the site's own requests,
   with the user's rights. Never go around the site's checks, and never change
   them for dicta.

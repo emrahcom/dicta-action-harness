@@ -8,6 +8,18 @@ do.
 The examples use a made-up site, Recipe Box, where users keep recipes and plan
 meals.
 
+## The full rules
+
+This guide teaches what a module needs. The full rules are in the contracts of
+the version of `dicta-action-server` this harness uses. After `npm install`,
+they are in `node_modules/dicta-action-server/specs/`:
+
+- `contract-capability.md`: the module and its capabilities.
+- `contract-context.md`: what the planner sees of the module.
+- `contract-plan.md`: plans, confirmations and limits.
+
+When this guide and a contract differ, the contract is right.
+
 ## The module
 
 The module is in `sites/<name>/module/`, in your copy of the harness. Its main
