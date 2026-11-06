@@ -44,18 +44,20 @@ export default recipeBox;
   page and the selected items. `state.desc` says what its fields mean.
 - `dictaCapabilities`: capabilities that `dicta-action-js` brings, such as the
   history of earlier requests. Always add them.
-- `confirmOver`: optional. How many items one plan may change before the user
-  is asked. The default is 10.
+- `confirmOver`: optional, a whole number, 10 by default. The most items of one
+  list, or steps calling the same `write` capability, that run without asking
+  the user. With more, the user is asked once, before any of them runs. With 0,
+  every change asks. `destructive` and `external` capabilities always ask.
 
-## How the module reaches your site
+## How the module calls your site
 
 There are two ways. Choose by what the agent can use.
 
 With the site's code, the module calls your site's own functions, the ones
-your pages call. The example above imports them from `recipe-box/api`. That
-name is an import alias: a setting maps it to your site's code, both here and
-in your site (`adding-dicta.md`). The module file stays the same in both
-places.
+your pages call. The example above imports them from `recipe-box/api`, an
+import alias: a setting maps that name to your site's code. An alias is one way
+to bring the module into your site. Choose the way with the developer
+(`adding-dicta.md`).
 
 With only a running site, such as a test environment, the module sends the
 same HTTP requests your pages send, with `fetch`:
@@ -105,7 +107,8 @@ type PlanArgs = { id: string; date: string };
   is taken.
 - `level` says how risky it is:
   - `read`: changes nothing.
-  - `write`: changes the user's data or the page.
+  - `write`: changes the user's data or the page. A change that others see in
+    the site, such as a task on a team's board, is `write` too.
   - `destructive`: deletes or overwrites what is hard to get back.
   - `external`: sends data out of the site or reaches other people, such as
     sharing, inviting, sending a message or paying.
@@ -190,6 +193,9 @@ The outputs the planner reads share 16 KB per plan. The state has at most 16
 KB too. Return only what a planner needs, such as ids, names and dates, not
 whole records.
 
+The module's descriptions and schemas go to the planner in every round, at most
+64 KB in all. Keep `site.desc` and each `desc` short.
+
 ### Filter long lists
 
 A list can grow, such as all recipes of a user. Then the list capability takes
@@ -219,7 +225,8 @@ Two limits make this matter:
 
 - The outputs the planner reads share 16 KB per plan.
 - A plan can run a step for each item of a list of at most 100 items. With a
-  longer list, the request stops.
+  longer list, the step fails before any item runs, and the planner must find
+  a shorter list.
 
 With filters, "plan every soup for next week" reads only the soups.
 
@@ -233,7 +240,7 @@ If your site has no bulk action, do not make one. A plan runs the single
 action for each item, and the user is asked first when there are many. Never
 write a capability whose `run` loops over a single action, such as
 `recipes.deleteMany`. When item 7 of 30 fails, the planner cannot tell which
-items were done, and the checks for many items do not apply.
+items were done, and the user is not asked before many items change.
 
 ### Values that can be cleared
 

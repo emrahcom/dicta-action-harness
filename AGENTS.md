@@ -3,7 +3,7 @@
 This folder is a harness for building the dicta action layer of a web site. You
 are the developer's agent. Your job is to write the site's capability module:
 the file that tells the dicta planner what it can do on the site, and how, with
-the site's own code.
+the site's own code or its own requests.
 
 Read `docs/getting-started.md` first.
 

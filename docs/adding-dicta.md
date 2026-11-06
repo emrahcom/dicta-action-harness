@@ -88,8 +88,8 @@ site behind a proxy.
 
 Your users' browsers must reach the server. Chromium blocks or asks before a
 public site calls a server on a private address, such as `localhost` or
-`192.168.x.x`. So in production, the server must have a public address, or be
-in the same network as your site.
+`192.168.x.x`. So in production, give the server a public address, or reach it
+through your site's own domain, behind a proxy.
 
 ## Tokens
 
