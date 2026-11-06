@@ -1,7 +1,40 @@
 # Adding dicta to your site
 
-To use the capability module, your pages need `dicta-action-js`, and you need a
-running `dicta-action-server`.
+To use the capability module, your site needs a copy of it, your pages need
+`dicta-action-js`, and you need a running `dicta-action-server`.
+
+You can do these steps by hand. Or you can ask the agent to do them. The agent
+does not change your site unless you ask.
+
+## The module in your site
+
+The module is made in the harness, in `site/module/`. Your site gets a copy of
+it.
+
+- Never change the copy in your site. Change `site/module/`, check it, and copy
+  it again.
+- The copy in your site may be older than `site/module/` while you work on new
+  capabilities. That is fine.
+
+There is more than one way to put the copy into your site. Choose the one that
+fits your site, and write it in `site/notes.md`, so the next session uses it
+too:
+
+- An import alias: the module imports your code with a fixed name, such as
+  `recipe-box/api`. In the harness, `paths` in `tsconfig.json` maps the name to
+  your site's code. In your site, your bundler, such as Vite or webpack, maps it
+  too. The copy is the same file. Good for sites built with a bundler.
+- Relative imports: the imports are changed to paths in your site when the
+  module is copied. Good when you cannot change the bundler's settings.
+- A separate bundle: the module and `dicta-action-js` are bundled into one
+  file, and your pages load it with a script tag. Good for sites without a
+  bundler, such as a WordPress theme or plugin. The module then reaches your
+  site with `fetch`, or with functions your site's own scripts put on
+  `window`.
+- `fetch` only: the module sends the same HTTP requests your pages send
+  (`writing-capabilities.md`). It imports nothing from your site, so it fits
+  every way above. It is the only way when the agent has no access to your
+  code.
 
 ## On every page
 
@@ -12,7 +45,7 @@ without them ends the request.
 
 ```ts
 import { DictaAction } from "dicta-action-js";
-import recipeBox from "./dicta-module";
+import recipeBox from "./dicta-module"; // the copy of site/module/
 
 const action = document.querySelector<DictaAction>("dicta-action")!;
 action.getToken = async () => {

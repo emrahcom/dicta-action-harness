@@ -10,11 +10,12 @@ meals.
 
 ## The module
 
-The module's default export is one object:
+The module is in `site/module/`, in your site's branch of the harness. Its main
+file is `site/module/index.ts`. Its default export is one object:
 
 ```ts
 import { type CapabilityModule, dictaCapabilities } from "dicta-action-js";
-import { getRecipe, listRecipes, updateRecipe } from "./api";
+import { getRecipe, listRecipes, updateRecipe } from "recipe-box/api";
 
 const recipeBox: CapabilityModule = {
   site: {
@@ -45,6 +46,35 @@ export default recipeBox;
   history of earlier requests. Always add them.
 - `confirmOver`: optional. How many items one plan may change before the user
   is asked. The default is 10.
+
+## How the module reaches your site
+
+There are two ways. Choose by what the agent can use.
+
+With the site's code, the module calls your site's own functions, the ones
+your pages call. The example above imports them from `recipe-box/api`. That
+name is an import alias: a setting maps it to your site's code, both here and
+in your site (`adding-dicta.md`). The module file stays the same in both
+places.
+
+With only a running site, such as a test environment, the module sends the
+same HTTP requests your pages send, with `fetch`:
+
+```ts
+run: async ({ id, date }: PlanArgs) => {
+  const response = await fetch(`/api/recipes/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ planned: date }),
+  });
+  if (!response.ok) throw new Error("The recipe was not changed");
+},
+```
+
+The browser sends the user's session cookie, so the site checks the user's
+rights as usual. But the page does not know about the change. It shows the old
+data until it loads again. Make sure the developer knows this. A capability
+may end with a page load (Mark page loads), so the user sees the change.
 
 ## A capability
 
@@ -159,6 +189,51 @@ so the planner puts it last:
 The outputs the planner reads share 16 KB per plan. The state has at most 16
 KB too. Return only what a planner needs, such as ids, names and dates, not
 whole records.
+
+### Filter long lists
+
+A list can grow, such as all recipes of a user. Then the list capability takes
+the filters your site's own list offers, such as a search text, a status or a
+date range, and a limit. Its `desc` says how many items it returns at most:
+
+```ts
+"recipes.list": {
+  level: "read",
+  desc:
+    "Lists recipes, newest first, at most 50. " +
+    "Filters by a search text in the title or by planned dates.",
+  args: {
+    type: "object",
+    properties: {
+      search: { type: "string" },
+      plannedFrom: { type: "string", description: "Date, YYYY-MM-DD" },
+      plannedTo: { type: "string", description: "Date, YYYY-MM-DD" },
+      limit: { type: "number", description: "At most 50, 20 by default" },
+    },
+  },
+  // ...
+},
+```
+
+Two limits make this matter:
+
+- The outputs the planner reads share 16 KB per plan.
+- A plan can run a step for each item of a list of at most 100 items. With a
+  longer list, the request stops.
+
+With filters, "plan every soup for next week" reads only the soups.
+
+### Bulk actions only when your site has them
+
+Some sites have a bulk action, such as "select all, delete" or "clear the
+board". Make it a capability, like any other user action. Its `confirm` says
+how many items it acts on.
+
+If your site has no bulk action, do not make one. A plan runs the single
+action for each item, and the user is asked first when there are many. Never
+write a capability whose `run` loops over a single action, such as
+`recipes.deleteMany`. When item 7 of 30 fails, the planner cannot tell which
+items were done, and the checks for many items do not apply.
 
 ### Values that can be cleared
 
