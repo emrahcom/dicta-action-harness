@@ -88,6 +88,20 @@ requests. Set these environment variables:
 All its paths start with `/dicta-action/`, so it can share a domain with your
 site behind a proxy.
 
+For tests, the harness starts it for you, in the version the harness uses:
+
+```sh
+cp .env.example .env
+npm run server
+```
+
+Fill in `.env` first. It holds the settings above, and git never commits it.
+Then set the `server` attribute of your test site to `http://localhost:8080`,
+and let its token endpoint sign with the same `JWT_SECRET`.
+
+In production, run the server on its own, as its README says:
+https://github.com/emrahcom/dicta-action-server
+
 Your users' browsers must reach the server. Chromium blocks or asks before a
 public site calls a server on a private address, such as `localhost` or
 `192.168.x.x`. So in production, give the server a public address, or reach it

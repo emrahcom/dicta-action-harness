@@ -82,8 +82,14 @@ When `tsconfig.local.json` exists, the check uses it.
 ## Trying it on the running site
 
 The check cannot tell if a capability does the right thing. Only a real request
-can. Once the module is in your site (`adding-dicta.md`), try requests in plain
-words:
+can. Once the module is in your site (`adding-dicta.md`), start the server:
+
+```sh
+npm run server
+```
+
+It reads its settings from `.env`. Copy `.env.example` to `.env` and fill it in
+first (`adding-dicta.md`, The server). Then try requests in plain words:
 
 - one for each capability;
 - one that clears each value that can be cleared, such as "remove the planned

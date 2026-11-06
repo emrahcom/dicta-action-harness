@@ -50,9 +50,11 @@ another developer goes on from the same point. It holds:
    give them the steps in `docs/adding-dicta.md` for their site. Choose the
    integration method with the developer, and write it in the site's
    `notes.md`.
-6. Try it on the running site, once the module is in it. Try requests in plain
-   words for each capability, and a request that clears each value that can be
-   cleared.
+6. Try it on the running site, once the module is in it. Start the server with
+   `npm run server` (`docs/checking-the-module.md`). Ask the developer for the
+   API key and the token secret, and write them only into `.env`, never
+   anywhere else. Try requests in plain words for each capability, and a
+   request that clears each value that can be cleared.
 
 ## Updating the harness
 
