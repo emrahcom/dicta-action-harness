@@ -83,6 +83,8 @@ requests. Set these environment variables:
 - `ANTHROPIC_API_KEY`: your key for the Claude API.
 - `JWT_SECRET`: the secret for the tokens, at least 32 bytes. Your backend uses
   the same secret.
+- `JWT_AUDIENCE`: optional. When you set it, a token must have this value in its
+  `aud` claim (Tokens).
 - `PORT`: optional, `8741` by default.
 
 All its paths start with `/dicta-action/`, so it can share a domain with your
@@ -115,6 +117,8 @@ every call.
 - A JWT signed with HS256 and `JWT_SECRET`.
 - `exp` is required. 5 minutes is a good lifetime.
 - `sub` is optional, the user's id.
+- `aud` is checked only when the server has `JWT_AUDIENCE`. Then the token must
+  have that value.
 
 For example, in Node.js with the `jose` package:
 
@@ -126,6 +130,7 @@ const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 async function dictaToken(userId: string) {
   return await new SignJWT({ sub: userId })
     .setProtectedHeader({ alg: "HS256" })
+    .setAudience("dicta-action") // only when the server has JWT_AUDIENCE
     .setExpirationTime("5m")
     .sign(secret);
 }
