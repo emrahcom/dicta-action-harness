@@ -1,0 +1,9 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "teamboard/*": ["../../../node_modules/dicta-example-site/web/*"]
+    }
+  },
+  "include": ["**/*.ts"]
+}
