@@ -138,3 +138,7 @@ async function dictaToken(userId: string) {
 
 Each request to the AI costs money. Limit how many tokens one user can get, in
 your backend, like any other costly feature.
+
+## Voice
+
+To let your users speak their requests, see `adding-voice.md`.

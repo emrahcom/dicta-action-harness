@@ -52,7 +52,8 @@ another developer goes on from the same point. It holds:
 5. Integrate the module into the site only when the developer asks. Otherwise
    give them the steps in `docs/adding-dicta.md` for their site. Choose the
    integration method with the developer, and write it in the site's
-   `notes.md`.
+   `notes.md`. Add voice input only when the developer asks
+   (`docs/adding-voice.md`).
 6. Try it on the running site, once the module is in it. Start the server with
    `npm run server` (`docs/checking-the-module.md`). Ask the developer for the
    API key and the token secret, and write them only into `.env`, never

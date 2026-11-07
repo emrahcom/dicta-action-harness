@@ -78,5 +78,7 @@ The example site is part of the harness. Do not change it.
 - `writing-capabilities.md`: how to write a good capability module.
 - `adding-dicta.md`: how to put the module, `dicta-action-js` and the server
   into your site.
+- `adding-voice.md`: how to let your users speak their requests, with
+  `dicta-js` and `dicta-server`. Optional.
 - `checking-the-module.md`: how to check the module and try it.
 - `upgrading.md`: how to move to a new version.
