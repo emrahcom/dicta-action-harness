@@ -63,7 +63,15 @@ The example site is part of the harness. Do not change it.
 
 1. Open your agent in your copy of the harness.
 2. Tell it which site to work on, where its code is, or only where the running
-   site is, and how to start it for tests.
+   site is, and how to start it for tests. For example:
+
+   ```
+   I want to add dicta to my site. Its short name is recipe-box.
+   The code is in ~/work/recipe-box. The running site is at
+   http://localhost:3000/. Please study the site and propose the
+   capabilities.
+   ```
+
 3. The agent follows `AGENTS.md`: it studies the site, lists what users can do,
    and writes the module in `sites/<name>/module/`.
 4. Review the module there, like any other change. Nothing in your site has
@@ -72,6 +80,17 @@ The example site is part of the harness. Do not change it.
 5. Add dicta to your site: see `adding-dicta.md`. You can do it by hand, or ask
    the agent to do it.
 6. Try some requests on your test site.
+
+## Tips
+
+- Say at the start what you want, such as "do not integrate the module yet".
+  The agent keeps to it.
+- Say where the code is, or that you only have the running site. With the code,
+  the agent calls your site's own functions.
+- Review the capability list before you approve it. The agent stops there and
+  lists the problems it found.
+- Trying requests needs the module in your site. Without integration, the agent
+  stops after the check.
 
 ## The guides
 
