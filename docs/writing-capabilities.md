@@ -170,6 +170,26 @@ The planner tells the user about it, and the user knows names, not ids.
 
 In `confirm`, read the names too, so the user sees "Lemon cake", not "r7".
 
+### Say where the data goes
+
+An `external` capability sends data out of the site. Its `confirm` says where
+the data goes, so the user can check it before it leaves. Use a short form the
+user knows, such as an email address or the name of a service. Never show a
+long link, a token or other text the user cannot read.
+
+```ts
+// Good: the user sees who gets it.
+confirm: async ({ id, member }: ShareArgs) => {
+  const person = await getMember(member);
+  const recipe = await getRecipe(id);
+  return `Share "${recipe.title}" with ${person.name} (${person.email})`;
+},
+
+// Good: the service by its name, not the address it posts to.
+confirm: async ({ id }: PostArgs) =>
+  `Post "${(await getRecipe(id)).title}" to Slack`,
+```
+
 ### Mark page loads
 
 A capability that may load a new page has `pageLoad: true`. Its `desc` says so,
