@@ -16,7 +16,9 @@ they are in `node_modules/dicta-action-server/specs/`:
 
 - `contract-capability.md`: the module and its capabilities.
 - `contract-context.md`: what the planner sees of the module.
-- `contract-plan.md`: plans, confirmations and limits.
+- `contract-plan.md`: plans, confirmations and the limits of a plan.
+- `contract-protocol.md` (Limits): the limits of the state, the context and the
+  outputs.
 
 When this guide and a contract differ, the contract is right.
 
