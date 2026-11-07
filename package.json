@@ -14,7 +14,7 @@
   "dependencies": {
     "@happy-dom/global-registrator": "21.0.4",
     "dicta-action-js": "0.1.2",
-    "dicta-action-server": "github:emrahcom/dicta-action-server#8d38cd13eab5394309ddbf5b63f0a33be1d56950",
+    "dicta-action-server": "github:emrahcom/dicta-action-server#v0.1.0",
     "dicta-example-site": "github:emrahcom/dicta-example-site#884fd9996a0b352edcca632bca1fad1c3e16d9a7",
     "happy-dom": "21.0.4",
     "tsx": "4.23.15",
