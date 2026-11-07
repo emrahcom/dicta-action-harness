@@ -83,7 +83,7 @@ requests. Set these environment variables:
 - `ANTHROPIC_API_KEY`: your key for the Claude API.
 - `JWT_SECRET`: the secret for the tokens, at least 32 bytes. Your backend uses
   the same secret.
-- `PORT`: optional, `8080` by default.
+- `PORT`: optional, `8741` by default.
 
 All its paths start with `/dicta-action/`, so it can share a domain with your
 site behind a proxy.
@@ -96,7 +96,7 @@ npm run server
 ```
 
 Fill in `.env` first. It holds the settings above, and git never commits it.
-Then set the `server` attribute of your test site to `http://localhost:8080`,
+Then set the `server` attribute of your test site to `http://localhost:8741`,
 and let its token endpoint sign with the same `JWT_SECRET`.
 
 In production, run the server on its own, as its README says:
