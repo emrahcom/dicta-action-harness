@@ -46,6 +46,13 @@ separate bundle are the likely choices.
   in the site's order (oldest first). The site has no other filter.
 - Errors from the site's API (such as "no such task") have no code, so the
   client reports them as `capability` with the site's message.
+- `tasks.share` confirms with the teammate's name and email address, the
+  address the site sends the task to (guide rule "Say where the data goes").
+  An unknown teammate id fails the confirmation with `not_found`, so the user
+  is never asked about a recipient that does not exist.
+- Reviewed on 2026-11-07 against "Say where the data goes": `tasks.share`
+  showed only the name; changed as above. `npm run check -- example-site`:
+  0 errors, 0 warnings.
 
 ## Capabilities
 
@@ -60,7 +67,7 @@ Approved by the developer on 2026-11-07:
 | `tasks.change` | write | `actions.updateTask` (title, due, assignee; due and assignee can be cleared) |
 | `tasks.setDone` | write | `actions.setDone` |
 | `tasks.delete` | destructive | `actions.deleteTask` |
-| `tasks.share` | external | `actions.shareTask` |
+| `tasks.share` | external | `actions.shareTask`, confirm shows the email address |
 | `tasks.open` | write, pageLoad | `actions.openTask` |
 
 Plus `dictaCapabilities`. State: `{ page: "list" }` or

@@ -233,8 +233,14 @@ const teamboard: CapabilityModule = {
         },
         required: ["id", "teammate"],
       },
-      confirm: async ({ id, teammate }: ShareArgs) =>
-        `Share "${await taskTitle(id)}" with ${await teammateName(teammate)}`,
+      // Shows the email address the site sends the task to.
+      confirm: async ({ id, teammate }: ShareArgs) => {
+        const person = (await listTeammates()).find((t) => t.id === teammate);
+        if (!person) {
+          throw Object.assign(new Error("No such teammate"), { code: "not_found" });
+        }
+        return `Share "${await taskTitle(id)}" with ${person.name} (${person.email})`;
+      },
       run: async ({ id, teammate }: ShareArgs) => {
         await actions.shareTask(id, teammate);
       },
