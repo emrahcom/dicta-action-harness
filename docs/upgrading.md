@@ -20,8 +20,9 @@ Ask your agent to update the harness. It gets the new version from `upstream`,
 the original harness. Then it reviews each site's module against the new
 guides, and tells you what it found. You decide what to change.
 
-Your sites' folders are not touched by the update. The harness itself never has
-a site folder.
+Your sites' folders are not touched by the update. The harness itself has only
+one site folder, the example site, `sites/example-site/`. It is not one of your
+sites, so there is nothing to upgrade in it. The update brings its new version.
 
 ## Updating a site in production
 

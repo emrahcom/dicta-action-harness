@@ -36,9 +36,19 @@ Everything the harness makes for a site is in `sites/<name>/`, such as
   tried.
 
 Commit `sites/` like any other work. Then another developer, or you on another
-machine, goes on from the same point. The harness itself never has a site
-folder, so its updates do not conflict with your work. Keep your work in your
-sites' folders, and do not change the harness's own files.
+machine, goes on from the same point. The harness itself has only one site
+folder, the example site. It never has your sites' folders, so its updates do
+not conflict with your work. Keep your work in your sites' folders, and do not
+change the harness's own files.
+
+## The example site
+
+`sites/example-site/` shows what a finished site folder looks like. The site is
+`dicta-example-site`, a small task list. An agent made the folder in a real
+session in the harness. Read its `notes.md` and its module to see what your
+agent will make.
+
+The example site is part of the harness. Do not change it.
 
 ## What you need
 

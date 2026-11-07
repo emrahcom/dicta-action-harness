@@ -18,6 +18,9 @@ folder, and nowhere else in the harness:
 - `sites/<name>/notes.md`: what you learned about the site and what you decided
   with the developer.
 
+`sites/example-site/` is the harness's example: a site folder an agent made in a
+real session. Read it as a model of a site's folder, and never change it.
+
 If the site's folder exists, read its `notes.md` before anything else. If it
 does not, it is a new site: ask the developer for a short name, where the
 site's code is, or only where the running site is, and how to start it for
@@ -62,7 +65,8 @@ When the developer asks you to update the harness:
 
 1. Merge `upstream/main`, the original harness, into the current branch.
 2. Run `npm install`, then `npm run check` on every site.
-3. Review every site's module against the updated guides.
+3. Review every site's module against the updated guides, except the example
+   site's.
 4. Report what you found for each site. Change a module only when the developer
    agrees.
 
