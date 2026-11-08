@@ -23,9 +23,9 @@ it too:
 - An import alias: the module imports your code with a fixed name, such as
   `recipe-box/api`. In the harness, `paths` in the module's `tsconfig.json` or
   `tsconfig.local.json` maps the name to your site's code
-  (`checking-the-module.md`). In your site, your bundler, such as Vite or
-  webpack, maps it too. The copy is the same file. Good for sites built with a
-  bundler.
+  ([`checking-the-module.md`](checking-the-module.md)). In your site, your
+  bundler, such as Vite or webpack, maps it too. The copy is the same file. Good
+  for sites built with a bundler.
 - Relative imports: the imports are changed to paths in your site when the
   module is copied. Good when you cannot change the bundler's settings.
 - A separate bundle: the module and `dicta-action-js` are bundled into one
@@ -34,9 +34,9 @@ it too:
   site with `fetch`, or with functions your site's own scripts put on
   `window`.
 - `fetch` only: the module sends the same HTTP requests your pages send
-  (`writing-capabilities.md`). It imports nothing from your site, so it fits
-  every way above. It is the only way when the agent has no access to your
-  code.
+  ([`writing-capabilities.md`](writing-capabilities.md)). It imports nothing
+  from your site, so it fits every way above. It is the only way when the agent
+  has no access to your code.
 
 ## On every page
 
@@ -62,8 +62,8 @@ action.module = recipeBox;
 ```
 
 - `server`: the address of your `dicta-action-server`.
-- `getToken`: returns a token from your backend (Tokens). Set it before
-  `module`.
+- `getToken`: returns a token from your backend ([Tokens](#tokens)). Set it
+  before `module`.
 - `module`: your capability module.
 
 The user's words come from your page. Pass them to the element:
@@ -84,7 +84,7 @@ requests. Set these environment variables:
 - `JWT_SECRET`: the secret for the tokens, at least 32 bytes. Your backend uses
   the same secret.
 - `JWT_AUDIENCE`: optional. When you set it, a token must have this value in its
-  `aud` claim (Tokens).
+  `aud` claim ([Tokens](#tokens)).
 - `PORT`: optional, `8741` by default.
 
 All its paths start with `/dicta-action/`, so it can share a domain with your
@@ -141,4 +141,5 @@ your backend, like any other costly feature.
 
 ## Voice
 
-To let your users speak their requests, see `adding-voice.md`.
+To let your users speak their requests, see
+[`adding-voice.md`](adding-voice.md).

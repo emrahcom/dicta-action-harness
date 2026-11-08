@@ -24,7 +24,8 @@ The check needs no browser and no server. It finds:
 
 It also warns about:
 
-- a type list other than a type and `null` (`writing-capabilities.md`);
+- a type list other than a type and `null`
+  ([`writing-capabilities.md`](writing-capabilities.md));
 - a module that cannot be loaded outside a browser;
 - a newer harness. Then ask your agent to update the harness.
 
@@ -63,7 +64,7 @@ Each site's module has a `tsconfig.json` in `sites/<name>/module/`:
 ```
 
 It holds the module's own settings, such as an import alias
-(`adding-dicta.md`). Commit it.
+([`adding-dicta.md`](adding-dicta.md)). Commit it.
 
 A path that is different on each machine, such as where your site's code is,
 goes into `tsconfig.local.json` next to it. It is never committed. Write it
@@ -83,14 +84,16 @@ When `tsconfig.local.json` exists, the check uses it.
 ## Trying it on the running site
 
 The check cannot tell if a capability does the right thing. Only a real request
-can. Once the module is in your site (`adding-dicta.md`), start the server:
+can. Once the module is in your site ([`adding-dicta.md`](adding-dicta.md)),
+start the server:
 
 ```sh
 npm run server
 ```
 
-It reads its settings from `.env`. Copy `.env.example` to `.env` and fill it in
-first (`adding-dicta.md`, The server). Then try requests in plain words:
+It reads its settings from `.env`. Copy [`.env.example`](../.env.example) to
+`.env` and fill it in first ([`adding-dicta.md`](adding-dicta.md#the-server),
+The server). Then try requests in plain words:
 
 - one for each capability;
 - one that clears each value that can be cleared, such as "remove the planned

@@ -22,8 +22,8 @@ the module with you.
 
 ## One folder per site
 
-Keep your own private copy of the harness (`README.md`). All your sites share
-it, each in its own folder, on the same branch.
+Keep your own private copy of the harness ([`README.md`](../README.md)). All
+your sites share it, each in its own folder, on the same branch.
 
 Everything the harness makes for a site is in `sites/<name>/`, such as
 `sites/recipe-box/`. It holds only two things:
@@ -72,13 +72,13 @@ The example site is part of the harness. Do not change it.
    capabilities.
    ```
 
-3. The agent follows `AGENTS.md`: it studies the site, lists what users can do,
-   and writes the module in `sites/<name>/module/`.
+3. The agent follows [`AGENTS.md`](../AGENTS.md): it studies the site, lists
+   what users can do, and writes the module in `sites/<name>/module/`.
 4. Review the module there, like any other change. Nothing in your site has
    changed yet. Each capability runs with the user's rights, so check that it
    uses your site's own code and checks.
-5. Add dicta to your site: see `adding-dicta.md`. You can do it by hand, or ask
-   the agent to do it.
+5. Add dicta to your site: see [`adding-dicta.md`](adding-dicta.md). You can do
+   it by hand, or ask the agent to do it.
 6. Try some requests on your test site.
 
 ## Tips
@@ -94,10 +94,12 @@ The example site is part of the harness. Do not change it.
 
 ## The guides
 
-- `writing-capabilities.md`: how to write a good capability module.
-- `adding-dicta.md`: how to put the module, `dicta-action-js` and the server
-  into your site.
-- `adding-voice.md`: how to let your users speak their requests, with
-  `dicta-js` and `dicta-server`. Optional.
-- `checking-the-module.md`: how to check the module and try it.
-- `upgrading.md`: how to move to a new version.
+- [`writing-capabilities.md`](writing-capabilities.md): how to write a good
+  capability module.
+- [`adding-dicta.md`](adding-dicta.md): how to put the module,
+  `dicta-action-js` and the server into your site.
+- [`adding-voice.md`](adding-voice.md): how to let your users speak their
+  requests, with `dicta-js` and `dicta-server`. Optional.
+- [`checking-the-module.md`](checking-the-module.md): how to check the module
+  and try it.
+- [`upgrading.md`](upgrading.md): how to move to a new version.

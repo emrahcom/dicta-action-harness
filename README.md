@@ -26,23 +26,29 @@ repo is public, and your copy will hold notes about your sites.
 4. Tell it which site to work on, and where its code is, or only where your
    running test site is.
 
-The agent follows `AGENTS.md`. Everything it makes for a site goes into
-`sites/<name>/`, such as `sites/recipe-box/`. Commit it like any other work.
-All your sites live side by side in the same copy.
+The agent follows [`AGENTS.md`](AGENTS.md). Everything it makes for a site goes
+into `sites/<name>/`, such as `sites/recipe-box/`. Commit it like any other
+work. All your sites live side by side in the same copy.
 
 ## Updates
 
 Ask your agent to update the harness. It gets the new version from `upstream`
-and checks your sites' modules against it. `docs/upgrading.md` tells the rest.
+and checks your sites' modules against it.
+[`docs/upgrading.md`](docs/upgrading.md) tells the rest.
 
 ## Read next
 
-- `docs/getting-started.md`: how the harness works, step by step.
-- `docs/writing-capabilities.md`: how to write a good module.
-- `docs/adding-dicta.md`: how to put dicta into your site.
-- `docs/adding-voice.md`: how to let your users speak their requests.
-- `docs/checking-the-module.md`: how to check the module and try it.
-- `docs/upgrading.md`: how to move to a new version.
+- [`docs/getting-started.md`](docs/getting-started.md): how the harness works,
+  step by step.
+- [`docs/writing-capabilities.md`](docs/writing-capabilities.md): how to write
+  a good module.
+- [`docs/adding-dicta.md`](docs/adding-dicta.md): how to put dicta into your
+  site.
+- [`docs/adding-voice.md`](docs/adding-voice.md): how to let your users speak
+  their requests.
+- [`docs/checking-the-module.md`](docs/checking-the-module.md): how to check
+  the module and try it.
+- [`docs/upgrading.md`](docs/upgrading.md): how to move to a new version.
 
 ## License
 

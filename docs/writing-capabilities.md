@@ -71,7 +71,7 @@ With the site's code, the module calls your site's own functions, the ones
 your pages call. The example above imports them from `recipe-box/api`, an
 import alias: a setting maps that name to your site's code. An alias is one way
 to bring the module into your site. Choose the way with the developer
-(`adding-dicta.md`).
+([`adding-dicta.md`](adding-dicta.md)).
 
 With only a running site, such as a test environment, the module sends the
 same HTTP requests your pages send, with `fetch`:
@@ -89,8 +89,9 @@ run: async ({ id, date }: PlanArgs) => {
 
 The browser sends the user's session cookie, so the site checks the user's
 rights as usual. But the page does not know about the change. It shows the old
-data until it loads again. Make sure the developer knows this. A capability
-may end with a page load (Mark page loads), so the user sees the change.
+data until it loads again. Make sure the developer knows this. A capability may
+end with a page load ([Mark page loads](#mark-page-loads)), so the user sees the
+change.
 
 ## A capability
 

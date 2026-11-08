@@ -1,7 +1,8 @@
 # Adding voice
 
 Voice input lets your users speak their request instead of typing it. It is
-optional. Add it after dicta works with typed text (`adding-dicta.md`).
+optional. Add it after dicta works with typed text
+([`adding-dicta.md`](adding-dicta.md)).
 
 Voice input needs two more parts:
 
@@ -40,8 +41,9 @@ input.addEventListener("dicta-text", (event) => {
 });
 ```
 
-`action` is the `<dicta-action>` element (`adding-dicta.md`). The attributes of
-`<dicta-input>`, such as `lang`, are in the `dicta-js` documents.
+`action` is the `<dicta-action>` element ([`adding-dicta.md`](adding-dicta.md)).
+The attributes of `<dicta-input>`, such as `lang`, are in the `dicta-js`
+documents.
 
 ## The server
 
@@ -63,7 +65,8 @@ server behind a proxy that handles TLS.
 ## Tokens
 
 `dicta-server` checks a token too, made the same way as for
-`dicta-action-server` (`adding-dicta.md`, Tokens). You can choose:
+`dicta-action-server` ([`adding-dicta.md`](adding-dicta.md#tokens), Tokens). You
+can choose:
 
 - One secret: both servers have the same `JWT_SECRET`. Then one token works on
   both, and one endpoint in your backend is enough.
