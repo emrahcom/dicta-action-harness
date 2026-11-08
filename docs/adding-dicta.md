@@ -1,7 +1,9 @@
 # Adding dicta to your site
 
 To use the capability module, your site needs a copy of it, your pages need
-`dicta-action-js`, and you need a running `dicta-action-server`.
+[`dicta-action-js`](https://github.com/emrahcom/dicta-action-js), and you need a
+running
+[`dicta-action-server`](https://github.com/emrahcom/dicta-action-server).
 
 You can do these steps by hand. Or you can ask the agent to do them. The agent
 does not change your site unless you ask.
@@ -72,7 +74,8 @@ The user's words come from your page. Pass them to the element:
 action.submit("plan the lemon cake for Friday");
 ```
 
-The text can come from a text field or from speech, such as `dicta-js`.
+The text can come from a text field or from speech, such as
+[`dicta-js`](https://github.com/emrahcom/dicta-js).
 
 ## The server
 

@@ -11,8 +11,10 @@ meals.
 ## The full rules
 
 This guide teaches what a module needs. The full rules are in the contracts of
-the version of `dicta-action-server` this harness uses. After `npm install`,
-they are in `node_modules/dicta-action-server/specs/`:
+the version of
+[`dicta-action-server`](https://github.com/emrahcom/dicta-action-server) this
+harness uses. After `npm install`, they are in
+`node_modules/dicta-action-server/specs/`:
 
 - `contract-capability.md`: the module and its capabilities.
 - `contract-context.md`: what the planner sees of the module.
@@ -56,8 +58,9 @@ export default recipeBox;
   it every time it plans.
 - `state.run`: what the page shows now, as a small object, such as the open
   page and the selected items. `state.desc` says what its fields mean.
-- `dictaCapabilities`: capabilities that `dicta-action-js` brings, such as the
-  history of earlier requests. Always add them.
+- `dictaCapabilities`: capabilities that
+  [`dicta-action-js`](https://github.com/emrahcom/dicta-action-js) brings, such
+  as the history of earlier requests. Always add them.
 - `confirmOver`: optional, a whole number, 10 by default. The most items of one
   list, or steps calling the same `write` capability, that run without asking
   the user. With more, the user is asked once, before any of them runs. With 0,

@@ -7,8 +7,10 @@ How to move to a new version of dicta.
 Four parts work together:
 
 - This harness: the guides, the rules and the check.
-- `dicta-action-server`, the planner.
-- `dicta-action-js`, the browser part, bundled into your site's pages.
+- [`dicta-action-server`](https://github.com/emrahcom/dicta-action-server), the
+  planner.
+- [`dicta-action-js`](https://github.com/emrahcom/dicta-action-js), the browser
+  part, bundled into your site's pages.
 - Your site's capability module, in `sites/<name>/module/`.
 
 Each release has notes. Read them first. They say what changed and what a site

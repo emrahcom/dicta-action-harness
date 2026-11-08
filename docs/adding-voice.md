@@ -6,9 +6,11 @@ optional. Add it after dicta works with typed text
 
 Voice input needs two more parts:
 
-- `dicta-js`: the `<dicta-input>` element. It has a text field, a microphone
-  button and a Send button. So the user can type or speak.
-- `dicta-server`: it turns speech into text, with a speech-to-text service.
+- [`dicta-js`](https://github.com/emrahcom/dicta-js): the `<dicta-input>`
+  element. It has a text field, a microphone button and a Send button. So the
+  user can type or speak.
+- [`dicta-server`](https://github.com/emrahcom/dicta-server): it turns speech
+  into text, with a speech-to-text service.
 
 The harness does not include them. Their own documents have all the details:
 
@@ -48,7 +50,8 @@ documents.
 ## The server
 
 For tests, run `dicta-server` from its Docker image. It listens on port `8740`.
-`dicta-action-server` uses `8741`, so both can run on one machine:
+[`dicta-action-server`](https://github.com/emrahcom/dicta-action-server) uses
+`8741`, so both can run on one machine:
 
 ```sh
 docker run -p 8740:8740 -e PROVIDER=deepgram -e DEEPGRAM_API_KEY=... \

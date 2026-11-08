@@ -11,11 +11,11 @@ the module with you.
 
 ## The parts
 
-- `dicta-action-server`: the planner. It talks to the AI service. It never acts
-  on your site.
-- `dicta-action-js`: the browser part. It puts a `<dicta-action>` element on
-  your pages, sends the user's words to the server and runs the plans it gets
-  back.
+- [`dicta-action-server`](https://github.com/emrahcom/dicta-action-server): the
+  planner. It talks to the AI service. It never acts on your site.
+- [`dicta-action-js`](https://github.com/emrahcom/dicta-action-js): the browser
+  part. It puts a `<dicta-action>` element on your pages, sends the user's words
+  to the server and runs the plans it gets back.
 - The capability module: it lists what a plan can do on your site, such as "add
   a recipe" or "share a recipe", and how to do it. The agent writes it here, in
   the harness. Later a copy of it goes into your site.
@@ -44,9 +44,9 @@ change the harness's own files.
 ## The example site
 
 `sites/example-site/` shows what a finished site folder looks like. The site is
-`dicta-example-site`, a small task list. An agent made the folder in a real
-session in the harness. Read its `notes.md` and its module to see what your
-agent will make.
+[`dicta-example-site`](https://github.com/emrahcom/dicta-example-site), a small
+task list. An agent made the folder in a real session in the harness. Read its
+`notes.md` and its module to see what your agent will make.
 
 The example site is part of the harness. Do not change it.
 
@@ -99,7 +99,8 @@ The example site is part of the harness. Do not change it.
 - [`adding-dicta.md`](adding-dicta.md): how to put the module,
   `dicta-action-js` and the server into your site.
 - [`adding-voice.md`](adding-voice.md): how to let your users speak their
-  requests, with `dicta-js` and `dicta-server`. Optional.
+  requests, with [`dicta-js`](https://github.com/emrahcom/dicta-js) and
+  [`dicta-server`](https://github.com/emrahcom/dicta-server). Optional.
 - [`checking-the-module.md`](checking-the-module.md): how to check the module
   and try it.
 - [`upgrading.md`](upgrading.md): how to move to a new version.
