@@ -10,14 +10,14 @@ module.
 Make your own private copy of the harness. Do not fork it: a fork of a public
 repo is public, and your copy will hold notes about your sites.
 
-1. Make an empty private repo on GitHub, such as `acme/dicta`.
+1. Make an empty private repo on GitHub, such as `your-account/dicta`.
 2. Copy the harness into it:
 
    ```sh
    git clone https://github.com/emrahcom/dicta-action-harness.git dicta
    cd dicta
    git remote rename origin upstream
-   git remote add origin git@github.com:acme/dicta.git
+   git remote add origin git@github.com:your-account/dicta.git
    git push -u origin main
    npm install
    ```
