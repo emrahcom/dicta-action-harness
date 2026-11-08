@@ -18,9 +18,28 @@ must change.
 
 ## Updating the harness
 
-Ask your agent to update the harness. It gets the new version from `upstream`,
-the original harness. Then it reviews each site's module against the new
-guides, and tells you what it found. You decide what to change.
+Commit your work first. Then, in your copy of the harness:
+
+```sh
+git fetch upstream
+git merge upstream/main
+npm install
+npm run check
+```
+
+The merge does not touch your sites' folders. It changes only the harness's
+own files, so it has no conflicts unless you changed one of them.
+
+If your copy has its own remote, push the merge:
+
+```sh
+git push
+```
+
+Then ask your agent to review each site's module against the new guides. It
+tells you what it found. You decide what to change.
+
+You can also ask your agent to do all of this. It follows the same steps.
 
 Your sites' folders are not touched by the update. The harness itself has only
 one site folder, the example site, `sites/example-site/`. It is not one of your

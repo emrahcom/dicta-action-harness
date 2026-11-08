@@ -32,9 +32,9 @@ work. All your sites live side by side in the same copy.
 
 ## Updates
 
-Ask your agent to update the harness. It gets the new version from `upstream`
-and checks your sites' modules against it.
-[`docs/upgrading.md`](docs/upgrading.md) tells the rest.
+The steps to update the harness are in
+[`docs/upgrading.md`](docs/upgrading.md#updating-the-harness). The same guide
+tells the rest.
 
 ## Read next
 
