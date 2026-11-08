@@ -82,6 +82,23 @@ again on a new machine, from the site's `notes.md`:
 
 When `tsconfig.local.json` exists, the check uses it.
 
+## Looking at the running site
+
+Your agent often needs the running site, even when it has the site's code. The
+site shows how a user signs in, what each page does and which requests it
+sends.
+
+Your agent uses the browser tool it has, such as a browser extension or
+Playwright. The harness does not install one.
+
+- Sign in through the site's own login form, with the test account in `.env`.
+  Do not copy the login requests. A site often adds a token or a cookie that a
+  copy misses.
+- Record the requests the page sends for each action. They are the site's own
+  requests, and a capability can send them too.
+- Keep any script for this outside the harness. It is a tool for the session,
+  not part of the module.
+
 ## Trying it on the running site
 
 The check cannot tell if a capability does the right thing. Only a real request

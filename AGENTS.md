@@ -41,8 +41,10 @@ another developer goes on from the same point. It holds:
 ## Workflow
 
 1. Study the site. With its code, read its pages, its API and the functions its
-   buttons call. Without it, use the running site: its pages and the requests
-   they send. Find how a user signs in and what a user can do.
+   buttons call. Look at the running site too, and without the code use only
+   the running site: its pages and the requests they send
+   (`docs/checking-the-module.md`, Looking at the running site). Find how a
+   user signs in and what a user can do.
 2. List what users can do on the site, as capabilities, each with its level.
    Show the list to the developer before you go on.
 3. Write the module in `sites/<name>/module/`. Follow
@@ -57,8 +59,9 @@ another developer goes on from the same point. It holds:
 6. Try it on the running site, once the module is in it. Start the server with
    `npm run server` (`docs/checking-the-module.md`). Ask the developer for the
    API key and the token secret, and write them only into `.env`, never
-   anywhere else. Try requests in plain words for each capability, and a
-   request that clears each value that can be cleared.
+   anywhere else. Look at the site as that guide says. Try requests in plain
+   words for each capability, and a request that clears each value that can be
+   cleared.
 
 ## Updating the harness
 
@@ -90,3 +93,5 @@ production.
 - Do not change the harness's own files. Your work goes only into the sites'
   folders.
 - Never put secrets, such as API keys, in the module or the site's frontend.
+- The credentials of the site's test account go only into `.env`. The site's
+  `notes.md` names the account, never its password.
