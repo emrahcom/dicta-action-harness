@@ -155,6 +155,31 @@ A plan cannot compute anything: it has no arithmetic and no expressions. So a
 capability takes the values a user would give, such as a date, not values the
 planner has to work out from other data.
 
+### Wait until the change is saved
+
+Many sites change the page at once and save the change to their server in the
+background, a moment later. Their functions return before the save is done. A
+person clicks a few seconds apart, so each save finishes in time. A plan runs
+its next step within milliseconds. Then two quick changes can overwrite each
+other, or the server's copy of a new item can replace a change made right after
+it. The report still says the step succeeded, and the page may look right until
+it reloads.
+
+So a capability that changes stored data returns only when the site has saved
+the change. Wait for what your site offers: the promise of the save request, a
+"saved" event, or the server's copy of a new item. Never wait a fixed time. If
+your site offers no way to know, tell the developer.
+
+```ts
+run: async ({ id, column }: MoveArgs) => {
+  board.moveCard(id, column); // changes the page, saves later
+  await board.whenSaved(); // returns when the server has the change
+},
+```
+
+A site whose functions return only after the server answers, such as one that
+awaits its `fetch` call, needs nothing more.
+
 ### Keep capabilities narrow
 
 One capability does one kind of action. Then `confirm` can say exactly what

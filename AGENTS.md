@@ -44,7 +44,9 @@ another developer goes on from the same point. It holds:
    buttons call. Look at the running site too, and without the code use only
    the running site: its pages and the requests they send
    (`docs/checking-the-module.md`, Looking at the running site). Find how a
-   user signs in and what a user can do.
+   user signs in, what a user can do, and how the site saves a change: at once,
+   or in the background (`docs/writing-capabilities.md`, Wait until the change
+   is saved).
 2. List what users can do on the site, as capabilities, each with its level.
    Show the list to the developer before you go on.
 3. Write the module in `sites/<name>/module/`. Follow
