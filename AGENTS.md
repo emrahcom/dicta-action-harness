@@ -63,7 +63,7 @@ another developer goes on from the same point. It holds:
    API key and the token secret, and write them only into `.env`, never
    anywhere else. Look at the site as that guide says. Try requests in plain
    words for each capability, and a request that clears each value that can be
-   cleared.
+   cleared. After each request, check the page too, not only the data.
 
 ## Updating the harness
 

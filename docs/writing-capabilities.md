@@ -168,7 +168,9 @@ it reloads.
 So a capability that changes stored data returns only when the site has saved
 the change. Wait for what your site offers: the promise of the save request, a
 "saved" event, or the server's copy of a new item. Never wait a fixed time. If
-your site offers no way to know, tell the developer.
+your site offers no way to know, tell the developer. Tell them too when your
+site saves only after a long delay, so each step would wait long: they may know
+a way to save at once.
 
 ```ts
 run: async ({ id, column }: MoveArgs) => {
@@ -179,6 +181,21 @@ run: async ({ id, column }: MoveArgs) => {
 
 A site whose functions return only after the server answers, such as one that
 awaits its `fetch` call, needs nothing more.
+
+### Leave the page as your site does
+
+The next request reads the page through `state`. So after a change, the page
+looks as your site's own action leaves it. For example, if your site selects a
+new item when a user makes it, the capability selects it too. Then "make it
+blue" finds the new item in the state.
+
+Copy only what the action itself does:
+
+- Not what a user does before it. A user selects an item to rename it, but a
+  capability that renames it leaves the selection as it was.
+- Not a page load or a change of view, such as opening the new item's page or
+  scrolling to it. A page load stops the rest of a plan, and a moving view
+  pulls the user away while the plan runs.
 
 ### Keep capabilities narrow
 
