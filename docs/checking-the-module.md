@@ -118,4 +118,11 @@ The server). Then try requests in plain words:
   date of the lemon cake";
 - one that asks about many items, such as "plan every soup for next week".
 
+When a request goes wrong, look at its rounds. The page sends each round to the
+dicta server as a `POST` to `/dicta-action/v1/round`. Record them with your
+browser tool, as you record the site's own requests. The request shows what
+the planner got, such as the text, the state, the history and the reports. The
+response shows what it replied. You need no relay for this, and the server
+keeps no log of the rounds.
+
 Write the requests and their results in the site's `notes.md`.
