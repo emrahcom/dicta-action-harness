@@ -118,11 +118,18 @@ The server). Then try requests in plain words:
   date of the lemon cake";
 - one that asks about many items, such as "plan every soup for next week".
 
-When a request goes wrong, look at its rounds. The page sends each round to the
-dicta server as a `POST` to `/dicta-action/v1/round`. Record them with your
-browser tool, as you record the site's own requests. The request shows what
+When a request goes wrong, look at its rounds. The page sends each round to
+`dicta-action-server` as a `POST` to `/dicta-action/v1/round`. Record them with
+your browser tool, as you record the site's own requests. The request shows what
 the planner got, such as the text, the state, the history and the reports. The
-response shows what it replied. You need no relay for this, and the server
-keeps no log of the rounds.
+response shows what it replied. You need no relay for this.
+
+When the developer tries requests in their own browser, you cannot record
+them. Turn on the round log instead: set `LOG_ROUNDS=true` in the settings of
+`dicta-action-server`, such as `.env` for `npm run server`, and start it again.
+When you cannot change its settings, ask the developer. The server then logs
+each round as one JSON line. `user` is the token's `sub` and `tabId` is the
+browser tab, so you can find the lines of one user or one tab. The log holds the
+users' requests and data, so turn it off again when you are done.
 
 Write the requests and their results in the site's `notes.md`.
