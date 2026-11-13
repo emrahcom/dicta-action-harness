@@ -5,9 +5,9 @@ This folder is an example. It shows what the harness makes for a site.
 The site is `dicta-example-site`, a small task list for a team:
 https://github.com/emrahcom/dicta-example-site
 
-The folder is the result of a real session in the harness. A developer asked
-the agent to add the site, and the agent did its normal work. The result is
-here as the agent made it.
+The folder is the result of a real session in the harness. A developer asked the
+agent to add the site, and the agent did its normal work. The result is here as
+the agent made it.
 
 - `notes.md`: what the agent learned about the site and what the developer
   decided.

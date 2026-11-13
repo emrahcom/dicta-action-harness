@@ -40,14 +40,14 @@ tells the rest.
 
 - [`docs/getting-started.md`](docs/getting-started.md): how the harness works,
   step by step.
-- [`docs/writing-capabilities.md`](docs/writing-capabilities.md): how to write
-  a good module.
+- [`docs/writing-capabilities.md`](docs/writing-capabilities.md): how to write a
+  good module.
 - [`docs/adding-dicta.md`](docs/adding-dicta.md): how to put dicta into your
   site.
 - [`docs/adding-voice.md`](docs/adding-voice.md): how to let your users speak
   their requests.
-- [`docs/checking-the-module.md`](docs/checking-the-module.md): how to check
-  the module and try it.
+- [`docs/checking-the-module.md`](docs/checking-the-module.md): how to check the
+  module and try it.
 - [`docs/upgrading.md`](docs/upgrading.md): how to move to a new version.
 
 ## License

@@ -9,8 +9,8 @@ Read `docs/getting-started.md` first.
 
 ## Where your work goes
 
-Each site has its own folder, `sites/<name>/`, such as `sites/recipe-box/`.
-Work on the site the developer names. Everything you make for it goes into its
+Each site has its own folder, `sites/<name>/`, such as `sites/recipe-box/`. Work
+on the site the developer names. Everything you make for it goes into its
 folder, and nowhere else in the harness:
 
 - `sites/<name>/module/`: the module, with its main file
@@ -22,15 +22,15 @@ folder, and nowhere else in the harness:
 real session. Read it as a model of a site's folder, and never change it.
 
 If the site's folder exists, read its `notes.md` before anything else. If it
-does not, it is a new site: ask the developer for a short name, where the
-site's code is, or only where the running site is, and how to start it for
-tests. Then create the folder with its `notes.md`, and `module/tsconfig.json`
-as `docs/checking-the-module.md` shows. A path that differs from machine to
-machine goes into `module/tsconfig.local.json`, never committed; on a new
-machine, write it again from `notes.md`.
+does not, it is a new site: ask the developer for a short name, where the site's
+code is, or only where the running site is, and how to start it for tests. Then
+create the folder with its `notes.md`, and `module/tsconfig.json` as
+`docs/checking-the-module.md` shows. A path that differs from machine to machine
+goes into `module/tsconfig.local.json`, never committed; on a new machine, write
+it again from `notes.md`.
 
-Keep the site's `notes.md` up to date as you work, so another session or
-another developer goes on from the same point. It holds:
+Keep the site's `notes.md` up to date as you work, so another session or another
+developer goes on from the same point. It holds:
 
 - where the site's code or the running site is, and how to start it;
 - the integration method, once chosen;
@@ -41,12 +41,12 @@ another developer goes on from the same point. It holds:
 ## Workflow
 
 1. Study the site. With its code, read its pages, its API and the functions its
-   buttons call. Look at the running site too, and without the code use only
-   the running site: its pages and the requests they send
-   (`docs/checking-the-module.md`, Looking at the running site). Find how a
-   user signs in, what a user can do, and how the site saves a change: at once,
-   or in the background (`docs/writing-capabilities.md`, Wait until the change
-   is saved).
+   buttons call. Look at the running site too, and without the code use only the
+   running site: its pages and the requests they send
+   (`docs/checking-the-module.md`, Looking at the running site). Find how a user
+   signs in, what a user can do, and how the site saves a change: at once, or in
+   the background (`docs/writing-capabilities.md`, Wait until the change is
+   saved).
 2. List what users can do on the site, as capabilities, each with its level.
    Show the list to the developer before you go on.
 3. Write the module in `sites/<name>/module/`. Follow
@@ -55,15 +55,14 @@ another developer goes on from the same point. It holds:
    (`docs/checking-the-module.md`).
 5. Integrate the module into the site only when the developer asks. Otherwise
    give them the steps in `docs/adding-dicta.md` for their site. Choose the
-   integration method with the developer, and write it in the site's
-   `notes.md`. Add voice input only when the developer asks
-   (`docs/adding-voice.md`).
+   integration method with the developer, and write it in the site's `notes.md`.
+   Add voice input only when the developer asks (`docs/adding-voice.md`).
 6. Try it on the running site, once the module is in it. Start the server with
    `npm run server` (`docs/checking-the-module.md`). Ask the developer for the
-   API key and the token secret, and write them only into `.env`, never
-   anywhere else. Look at the site as that guide says. Try requests in plain
-   words for each capability, and a request that clears each value that can be
-   cleared. After each request, check the page too, not only the data.
+   API key and the token secret, and write them only into `.env`, never anywhere
+   else. Look at the site as that guide says. Try requests in plain words for
+   each capability, and a request that clears each value that can be cleared.
+   After each request, check the page too, not only the data.
 
 ## Updating the harness
 
@@ -76,14 +75,13 @@ When the developer asks you to update the harness:
 4. Report what you found for each site. Change a module only when the developer
    agrees.
 
-`docs/upgrading.md` tells the developer what comes next for sites in
-production.
+`docs/upgrading.md` tells the developer what comes next for sites in production.
 
 ## Rules
 
 - The guides teach what a module needs. The full rules are in the contracts
-  (`docs/writing-capabilities.md`, The full rules). When a guide and a
-  contract differ, follow the contract and tell the developer.
+  (`docs/writing-capabilities.md`, The full rules). When a guide and a contract
+  differ, follow the contract and tell the developer.
 - Each capability calls the site's own code, or sends the site's own requests,
   with the user's rights. Never go around the site's checks, and never change
   them for dicta.

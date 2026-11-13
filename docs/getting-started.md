@@ -31,9 +31,8 @@ Everything the harness makes for a site is in `sites/<name>/`, such as
 - `sites/<name>/module/`: the module. This is the only place where it is
   changed.
 - `sites/<name>/notes.md`: what the agent learned about the site and what you
-  decided together. For example: where the site is and how to start it, the
-  list of capabilities, the problems the agent found, and the requests it
-  tried.
+  decided together. For example: where the site is and how to start it, the list
+  of capabilities, the problems the agent found, and the requests it tried.
 
 Commit `sites/` like any other work. Then another developer, or you on another
 machine, goes on from the same point. The harness itself has only one site
@@ -52,8 +51,8 @@ The example site is part of the harness. Do not change it.
 
 ## What you need
 
-- A running copy of your site for tests, such as a local development server or
-  a test environment.
+- A running copy of your site for tests, such as a local development server or a
+  test environment.
 - Your site's source code, if you can give it to the agent. The agent only reads
   it, unless you ask it to add dicta to your site. Without the code, the agent
   works with the running site only.
@@ -83,8 +82,8 @@ The example site is part of the harness. Do not change it.
 
 ## Tips
 
-- Say at the start what you want, such as "do not integrate the module yet".
-  The agent keeps to it.
+- Say at the start what you want, such as "do not integrate the module yet". The
+  agent keeps to it.
 - Say where the code is, or that you only have the running site. With the code,
   the agent calls your site's own functions.
 - Review the capability list before you approve it. The agent stops there and
@@ -96,8 +95,8 @@ The example site is part of the harness. Do not change it.
 
 - [`writing-capabilities.md`](writing-capabilities.md): how to write a good
   capability module.
-- [`adding-dicta.md`](adding-dicta.md): how to put the module,
-  `dicta-action-js` and the server into your site.
+- [`adding-dicta.md`](adding-dicta.md): how to put the module, `dicta-action-js`
+  and the server into your site.
 - [`adding-voice.md`](adding-voice.md): how to let your users speak their
   requests, with [`dicta-js`](https://github.com/emrahcom/dicta-js) and
   [`dicta-server`](https://github.com/emrahcom/dicta-server). Optional.

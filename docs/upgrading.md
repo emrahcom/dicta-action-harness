@@ -27,8 +27,8 @@ npm install
 npm run check
 ```
 
-The merge does not touch your sites' folders. It changes only the harness's
-own files, so it has no conflicts unless you changed one of them.
+The merge does not touch your sites' folders. It changes only the harness's own
+files, so it has no conflicts unless you changed one of them.
 
 If your copy has its own remote, push the merge:
 
@@ -64,9 +64,9 @@ version is the `v1` in `/dicta-action/v1/round`. So:
 1. Update the server first.
 2. Then update `dicta-action-js` and the copy of the module, when it suits you.
 
-A change that would break older sites gets a new protocol version, such as
-`v2`. The server then serves both versions for a while. The release notes say
-when the old one goes away.
+A change that would break older sites gets a new protocol version, such as `v2`.
+The server then serves both versions for a while. The release notes say when the
+old one goes away.
 
 ## Updating the server
 

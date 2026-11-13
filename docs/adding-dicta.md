@@ -30,11 +30,10 @@ it too:
   for sites built with a bundler.
 - Relative imports: the imports are changed to paths in your site when the
   module is copied. Good when you cannot change the bundler's settings.
-- A separate bundle: the module and `dicta-action-js` are bundled into one
-  file, and your pages load it with a script tag. Good for sites without a
-  bundler, such as a WordPress theme or plugin. The module then reaches your
-  site with `fetch`, or with functions your site's own scripts put on
-  `window`.
+- A separate bundle: the module and `dicta-action-js` are bundled into one file,
+  and your pages load it with a script tag. Good for sites without a bundler,
+  such as a WordPress theme or plugin. The module then reaches your site with
+  `fetch`, or with functions your site's own scripts put on `window`.
 - `fetch` only: the module sends the same HTTP requests your pages send
   ([`writing-capabilities.md`](writing-capabilities.md)). It imports nothing
   from your site, so it fits every way above. It is the only way when the agent
@@ -43,8 +42,8 @@ it too:
 ## On every page
 
 Every page of your site loads `dicta-action-js` and the module, and has one
-`<dicta-action>` element. Put them in the layout that all your pages share.
-When a capability loads a new page, the request goes on in that page, so a page
+`<dicta-action>` element. Put them in the layout that all your pages share. When
+a capability loads a new page, the request goes on in that page, so a page
 without them ends the request.
 
 ```ts

@@ -1,9 +1,8 @@
 # Writing capabilities
 
-The capability module tells the planner what it can do on your site. The
-planner sees only the module's descriptions and schemas. It never sees your
-code or your pages. So a good module is clear, small and close to what users
-do.
+The capability module tells the planner what it can do on your site. The planner
+sees only the module's descriptions and schemas. It never sees your code or your
+pages. So a good module is clear, small and close to what users do.
 
 The examples use a made-up site, Recipe Box, where users keep recipes and plan
 meals.
@@ -56,8 +55,8 @@ export default recipeBox;
 - `site.desc`: what the planner needs to know beyond the capabilities: what the
   site is for, its main things and its words. Keep it short. The planner reads
   it every time it plans.
-- `state.run`: what the page shows now, as a small object, such as the open
-  page and the selected items. `state.desc` says what its fields mean.
+- `state.run`: what the page shows now, as a small object, such as the open page
+  and the selected items. `state.desc` says what its fields mean.
 - `dictaCapabilities`: capabilities that
   [`dicta-action-js`](https://github.com/emrahcom/dicta-action-js) brings, such
   as the history of earlier requests. Always add them.
@@ -70,14 +69,14 @@ export default recipeBox;
 
 There are two ways. Choose by what the agent can use.
 
-With the site's code, the module calls your site's own functions, the ones
-your pages call. The example above imports them from `recipe-box/api`, an
-import alias: a setting maps that name to your site's code. An alias is one way
-to bring the module into your site. Choose the way with the developer
+With the site's code, the module calls your site's own functions, the ones your
+pages call. The example above imports them from `recipe-box/api`, an import
+alias: a setting maps that name to your site's code. An alias is one way to
+bring the module into your site. Choose the way with the developer
 ([`adding-dicta.md`](adding-dicta.md)).
 
-With only a running site, such as a test environment, the module sends the
-same HTTP requests your pages send, with `fetch`:
+With only a running site, such as a test environment, the module sends the same
+HTTP requests your pages send, with `fetch`:
 
 ```ts
 run: async ({ id, date }: PlanArgs) => {
@@ -194,13 +193,13 @@ Copy only what the action itself does:
 - Not what a user does before it. A user selects an item to rename it, but a
   capability that renames it leaves the selection as it was.
 - Not a page load or a change of view, such as opening the new item's page or
-  scrolling to it. A page load stops the rest of a plan, and a moving view
-  pulls the user away while the plan runs.
+  scrolling to it. A page load stops the rest of a plan, and a moving view pulls
+  the user away while the plan runs.
 
 ### Keep capabilities narrow
 
-One capability does one kind of action. Then `confirm` can say exactly what
-will happen, such as `Delete "Lemon cake"`. A wide capability, such as one
+One capability does one kind of action. Then `confirm` can say exactly what will
+happen, such as `Delete "Lemon cake"`. A wide capability, such as one
 `recipes.change` for every kind of change, makes confirmations vague.
 
 ### Return names, not only ids
@@ -222,8 +221,8 @@ In `confirm`, read the names too, so the user sees "Lemon cake", not "r7".
 
 An `external` capability sends data out of the site. Its `confirm` says where
 the data goes, so the user can check it before it leaves. Use a short form the
-user knows, such as an email address or the name of a service. Never show a
-long link, a token or other text the user cannot read.
+user knows, such as an email address or the name of a service. Never show a long
+link, a token or other text the user cannot read.
 
 ```ts
 // Good: the user sees who gets it.
@@ -269,9 +268,9 @@ so the planner puts it last:
 
 ### Keep state and outputs small
 
-The outputs the planner reads share 16 KB per plan. The state has at most 16
-KB too. Return only what a planner needs, such as ids, names and dates, not
-whole records.
+The outputs the planner reads share 16 KB per plan. The state has at most 16 KB
+too. Return only what a planner needs, such as ids, names and dates, not whole
+records.
 
 The module's descriptions and schemas go to the planner in every round, at most
 64 KB in all. Keep `site.desc` and each `desc` short.
@@ -305,27 +304,27 @@ Two limits make this matter:
 
 - The outputs the planner reads share 16 KB per plan.
 - A plan can run a step for each item of a list of at most 100 items. With a
-  longer list, the step fails before any item runs, and the planner must find
-  a shorter list.
+  longer list, the step fails before any item runs, and the planner must find a
+  shorter list.
 
 With filters, "plan every soup for next week" reads only the soups.
 
 ### Bulk actions only when your site has them
 
 Some sites have a bulk action, such as "select all, delete" or "clear the
-board". Make it a capability, like any other user action. Its `confirm` says
-how many items it acts on.
+board". Make it a capability, like any other user action. Its `confirm` says how
+many items it acts on.
 
-If your site has no bulk action, do not make one. A plan runs the single
-action for each item, and the user is asked first when there are many. Never
-write a capability whose `run` loops over a single action, such as
-`recipes.deleteMany`. When item 7 of 30 fails, the planner cannot tell which
-items were done, and the user is not asked before many items change.
+If your site has no bulk action, do not make one. A plan runs the single action
+for each item, and the user is asked first when there are many. Never write a
+capability whose `run` loops over a single action, such as `recipes.deleteMany`.
+When item 7 of 30 fails, the planner cannot tell which items were done, and the
+user is not asked before many items change.
 
 ### Values that can be cleared
 
-Some values can be empty, such as a recipe's planned date. Give such an
-argument the type list `["<type>", "null"]`, so a plan can clear it:
+Some values can be empty, such as a recipe's planned date. Give such an argument
+the type list `["<type>", "null"]`, so a plan can clear it:
 
 ```ts
 type ChangeArgs = { id: string; title?: string; planned?: string | null };
@@ -368,5 +367,5 @@ An output field that can be empty gets the same type list, such as
 `planned: { type: ["string", "null"] }`, so the planner knows it can be `null`.
 
 Use type lists only for "a type or `null`". When you try the module, also try a
-request that clears each value that can be cleared, such as "remove the
-planned date of the lemon cake".
+request that clears each value that can be cleared, such as "remove the planned
+date of the lemon cake".

@@ -85,15 +85,14 @@ When `tsconfig.local.json` exists, the check uses it.
 ## Looking at the running site
 
 Your agent often needs the running site, even when it has the site's code. The
-site shows how a user signs in, what each page does and which requests it
-sends.
+site shows how a user signs in, what each page does and which requests it sends.
 
 Your agent uses the browser tool it has, such as a browser extension or
 Playwright. The harness does not install one.
 
-- Sign in through the site's own login form, with the test account in `.env`.
-  Do not copy the login requests. A site often adds a token or a cookie that a
-  copy misses.
+- Sign in through the site's own login form, with the test account in `.env`. Do
+  not copy the login requests. A site often adds a token or a cookie that a copy
+  misses.
 - Record the requests the page sends for each action. They are the site's own
   requests, and a capability can send them too.
 - Keep any script for this outside the harness. It is a tool for the session,
@@ -124,8 +123,8 @@ your browser tool, as you record the site's own requests. The request shows what
 the planner got, such as the text, the state, the history and the reports. The
 response shows what it replied. You need no relay for this.
 
-When the developer tries requests in their own browser, you cannot record
-them. Turn on the round log instead: set `LOG_ROUNDS=true` in the settings of
+When the developer tries requests in their own browser, you cannot record them.
+Turn on the round log instead: set `LOG_ROUNDS=true` in the settings of
 `dicta-action-server`, such as `.env` for `npm run server`, and start it again.
 When you cannot change its settings, ask the developer. The server then logs
 each round as one JSON line. `user` is the token's `sub` and `tabId` is the
