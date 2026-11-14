@@ -35,8 +35,7 @@ developer goes on from the same point. It holds:
 - where the site's code or the running site is, and how to start it;
 - the integration method, once chosen;
 - the capability list the developer approved;
-- the problems you listed for the developer;
-- the requests you tried, and their results.
+- the problems you listed for the developer.
 
 ## Workflow
 

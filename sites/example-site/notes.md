@@ -87,7 +87,3 @@ Left out: `POST /api/reset` (no button calls it, and it wipes all data).
    keeps showing old data until it loads again. Decided with the developer on
    2026-11-07: leave it. A reload after each change would cut multi-step plans
    short. The user loads the page again to see the result.
-
-## Requests tried
-
-None yet.
