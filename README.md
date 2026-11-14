@@ -48,6 +48,8 @@ tells the rest.
   their requests.
 - [`docs/checking-the-module.md`](docs/checking-the-module.md): how to check the
   module and try it.
+- [`docs/request-flows.md`](docs/request-flows.md): how to make the module
+  better with flows of requests.
 - [`docs/upgrading.md`](docs/upgrading.md): how to move to a new version.
 
 ## License

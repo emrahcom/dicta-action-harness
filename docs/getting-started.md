@@ -102,4 +102,6 @@ The example site is part of the harness. Do not change it.
   [`dicta-server`](https://github.com/emrahcom/dicta-server). Optional.
 - [`checking-the-module.md`](checking-the-module.md): how to check the module
   and try it.
+- [`request-flows.md`](request-flows.md): how to make the module better with
+  flows of requests.
 - [`upgrading.md`](upgrading.md): how to move to a new version.

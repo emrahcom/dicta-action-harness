@@ -132,3 +132,6 @@ browser tab, so you can find the lines of one user or one tab. The log holds the
 users' requests and data, so turn it off again when you are done.
 
 Write the requests and their results in the site's `notes.md`.
+
+To try many requests again and again, see
+[`request-flows.md`](request-flows.md).
