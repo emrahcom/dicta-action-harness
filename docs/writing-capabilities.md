@@ -126,9 +126,20 @@ type PlanArgs = { id: string; date: string };
   - `read`: changes nothing.
   - `write`: changes the user's data or the page. A change that others see in
     the site, such as a task on a team's board, is `write` too.
-  - `destructive`: deletes or overwrites what is hard to get back.
+  - `destructive`: deletes or overwrites what is hard to get back. A change to
+    how the user signs in, such as the email, the password or an access key, is
+    `destructive` too.
   - `external`: sends data out of the site or reaches other people, such as
-    sharing, inviting, sending a message or paying.
+    sharing, inviting, sending a message or paying. A change to who can see or
+    do what, such as a role, a right or making something public, is `external`
+    too.
+
+  Other people can write text in the site, such as a task title. The planner
+  reads that text, and it can make the planner call a capability that the user
+  did not ask for. The user is always asked before a `destructive` or `external`
+  call. So give a capability one of these levels when a call that the user did
+  not ask for could hurt them. When you are not sure, choose the higher level.
+
 - `desc`: one or two sentences: what it does and when to use it.
 - `args` and `output`: JSON Schemas. Use only `type`, `properties`, `required`,
   `items`, `enum` and `description`.
