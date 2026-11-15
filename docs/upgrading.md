@@ -47,26 +47,15 @@ sites, so there is nothing to upgrade in it. The update brings its new version.
 
 ## Updating a site in production
 
-### Until version 1.0.0
-
-Any release may break the other parts. So update them together:
+Until version 1.0.0, any release may break the other parts. So update them
+together:
 
 1. Update the harness, and fix the module with your agent.
 2. Update the server, `dicta-action-js` and the copy of the module in your site
    at the same time.
 3. Try some requests on the site.
 
-### From version 1.0.0 on
-
-A new server works with older sites of the same protocol version. The protocol
-version is the `v1` in `/dicta-action/v1/round`. So:
-
-1. Update the server first.
-2. Then update `dicta-action-js` and the copy of the module, when it suits you.
-
-A change that would break older sites gets a new protocol version, such as `v2`.
-The server then serves both versions for a while. The release notes say when the
-old one goes away.
+The release notes of version 1.0.0 will say what changes from then on.
 
 ## Updating the server
 
