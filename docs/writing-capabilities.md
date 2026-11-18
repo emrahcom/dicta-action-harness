@@ -283,6 +283,11 @@ The outputs the planner reads share 16 KB per plan. The state has at most 16 KB
 too. Return only what a planner needs, such as ids, names and dates, not whole
 records.
 
+A capability that creates something returns its id in a small output, such as
+`{ id: "r12", title: "Lemon cake" }`. A large output is dropped from the request
+after two more plans, and from the history when the request ends. An id inside a
+large output is then lost, for a later step or for "undo that".
+
 The module's descriptions and schemas go to the planner in every round, at most
 64 KB in all. Keep `site.desc` and each `desc` short.
 
