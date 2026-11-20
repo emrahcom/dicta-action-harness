@@ -91,9 +91,10 @@ run: async ({ id, date }: PlanArgs) => {
 
 The browser sends the user's session cookie, so the site checks the user's
 rights as usual. But the page does not know about the change. It shows the old
-data until it loads again. Make sure the developer knows this. A capability may
-end with a page load ([Mark page loads](#mark-page-loads)), so the user sees the
-change.
+data until it loads again. Make sure the developer knows this. A capability that
+changes data does not load the page. Add one capability that loads it again, and
+say in its `desc` to call it last, after the changes
+([Mark page loads](#mark-page-loads)). Then the user sees the changes.
 
 ## A capability
 
@@ -276,6 +277,23 @@ so the planner puts it last:
 - A page load stays on your site's own origin.
 - A capability with `pageLoad` does not start downloads. Put a download in a
   capability without `pageLoad`.
+
+When your module calls your site's HTTP API, the page does not show a change
+until it loads again. One capability loads it again, at the end of a plan:
+
+```ts
+"page.reload": {
+  level: "write",
+  desc:
+    "Loads the page again, so it shows the changes. " +
+    "Call it last, after the changes.",
+  pageLoad: true,
+  confirm: async () => "Load the page again",
+  run: async () => {
+    location.reload();
+  },
+},
+```
 
 ### Keep state and outputs small
 
