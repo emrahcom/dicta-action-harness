@@ -320,7 +320,9 @@ date range, and a limit. Its `desc` says how many items it returns at most:
   level: "read",
   desc:
     "Lists recipes, newest first, at most 50. " +
-    "Filters by a search text in the title or by planned dates.",
+    "Filters by planned dates, or by a search, which finds only titles " +
+    "that contain its exact text: search with one word, and list without " +
+    "a search when it finds nothing.",
   args: {
     type: "object",
     properties: {
@@ -333,6 +335,10 @@ date range, and a limit. Its `desc` says how many items it returns at most:
   // ...
 },
 ```
+
+The planner cannot see how your search works. A phrase that does not match
+exactly, such as "lemon cake recipe" for "Lemon cake", finds nothing. So the
+`desc` says how the search matches and what to do when it finds nothing.
 
 Two limits make this matter:
 
