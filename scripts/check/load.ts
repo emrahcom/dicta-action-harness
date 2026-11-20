@@ -5,6 +5,7 @@
 
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { pathToFileURL } from "node:url";
+import type { SiteContext } from "dicta-action-js";
 
 // The same as the MARK in index.ts.
 const MARK = "dicta-check-result:";
@@ -49,11 +50,67 @@ function typeLists(schema: unknown, path: string, found: string[]) {
   typeLists(items, `${path}[]`, found);
 }
 
+// The site context: built as the client builds it, within the size limit
+// and valid for the server.
+function checkSiteContext(
+  build: () => SiteContext,
+  check: (context: SiteContext) => void,
+  result: Result,
+) {
+  try {
+    const context = build();
+    const size = Buffer.byteLength(JSON.stringify(context), "utf8");
+    if (size > MAX_CONTEXT) {
+      result.errors.push(
+        `the site context is ${Math.ceil(size / 1024)} KB, more than ${MAX_CONTEXT / 1024} KB. ` +
+          "Shorten site.desc and the capabilities' desc",
+      );
+    }
+    try {
+      check(context);
+    } catch (error) {
+      // The server's error names a capability by its place in the list; name
+      // it as the module does.
+      const text = firstLine(error).replace(
+        /context\.capabilities\[(\d+)\]/,
+        (all, i) => context.capabilities[Number(i)]?.name ?? all,
+      );
+      result.errors.push(`the site context is not valid: ${text}`);
+    }
+  } catch (error) {
+    result.errors.push(
+      `the site context could not be built: ${firstLine(error)}`,
+    );
+  }
+}
+
+// The capabilities: confirm where the level needs it, and type lists.
+function checkCapabilities(capabilities: unknown, result: Result) {
+  if (typeof capabilities !== "object" || capabilities === null) return;
+  for (const [name, capability] of Object.entries(capabilities)) {
+    const { level, confirm, args, output } = capability as Capability;
+    const asks = ["write", "destructive", "external"].includes(String(level));
+    if (asks && typeof confirm !== "function") {
+      result.errors.push(
+        `${name}: add confirm. A ${String(level)} capability needs it: ` +
+          "it gives the text the user sees before the step runs",
+      );
+    }
+    const lists: string[] = [];
+    typeLists(args, "args", lists);
+    typeLists(output, "output", lists);
+    for (const list of lists) {
+      result.warnings.push(
+        `${name}: ${list}. Use a type list only for a type or null`,
+      );
+    }
+  }
+}
+
 GlobalRegistrator.register({ url: "http://localhost/" });
 
 const file = process.argv[2];
-const errors: string[] = [];
-const warnings: string[] = [];
+const result: Result = { errors: [], warnings: [] };
 
 // Imported after the DOM stand-in, since importing dicta-action-js defines
 // its element.
@@ -65,67 +122,24 @@ try {
   ({ checkContext } = await import("dicta-action-server/src/context.ts"));
   module = (await import(pathToFileURL(file).href)).default;
 } catch (error) {
-  finish({ errors, warnings, notLoaded: firstLine(error) });
+  finish({ ...result, notLoaded: firstLine(error) });
 }
 
 if (typeof module !== "object" || module === null) {
-  finish({
-    errors: ["module/index.ts has no default export with the module"],
-    warnings,
-  });
+  result.errors.push("module/index.ts has no default export with the module");
+  finish(result);
 }
 
-try {
-  const context = buildContext(module);
-  const size = Buffer.byteLength(JSON.stringify(context), "utf8");
-  if (size > MAX_CONTEXT) {
-    errors.push(
-      `the site context is ${Math.ceil(size / 1024)} KB, more than ${MAX_CONTEXT / 1024} KB. ` +
-        "Shorten site.desc and the capabilities' desc",
-    );
-  }
-  try {
-    checkContext(context);
-  } catch (error) {
-    // The server's error names a capability by its place in the list; name it
-    // as the module does.
-    const text = firstLine(error).replace(
-      /context\.capabilities\[(\d+)\]/,
-      (all, i) => context.capabilities[Number(i)]?.name ?? all,
-    );
-    errors.push(`the site context is not valid: ${text}`);
-  }
-} catch (error) {
-  errors.push(`the site context could not be built: ${firstLine(error)}`);
-}
+checkSiteContext(() => buildContext(module), checkContext, result);
 
 const { confirmOver, capabilities } = module;
 if (
   confirmOver !== undefined &&
   !(Number.isInteger(confirmOver) && confirmOver >= 0)
 ) {
-  errors.push("confirmOver must be a whole number from 0");
+  result.errors.push("confirmOver must be a whole number from 0");
 }
 
-if (typeof capabilities === "object" && capabilities !== null) {
-  for (const [name, capability] of Object.entries(capabilities)) {
-    const { level, confirm, args, output } = capability as Capability;
-    const asks = ["write", "destructive", "external"].includes(String(level));
-    if (asks && typeof confirm !== "function") {
-      errors.push(
-        `${name}: add confirm. A ${String(level)} capability needs it: ` +
-          "it gives the text the user sees before the step runs",
-      );
-    }
-    const lists: string[] = [];
-    typeLists(args, "args", lists);
-    typeLists(output, "output", lists);
-    for (const list of lists) {
-      warnings.push(
-        `${name}: ${list}. Use a type list only for a type or null`,
-      );
-    }
-  }
-}
+checkCapabilities(capabilities, result);
 
-finish({ errors, warnings });
+finish(result);
