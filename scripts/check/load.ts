@@ -6,6 +6,7 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { pathToFileURL } from "node:url";
 
+// The same as the MARK in index.ts.
 const MARK = "dicta-check-result:";
 // The most bytes of a site context (contract-protocol.md in
 // dicta-action-server, Limits).
@@ -13,6 +14,12 @@ const MAX_CONTEXT = 64 * 1024;
 
 type Result = { errors: string[]; warnings: string[]; notLoaded?: string };
 type Schema = { type?: unknown; properties?: unknown; items?: unknown };
+type Capability = {
+  level?: unknown;
+  confirm?: unknown;
+  args?: unknown;
+  output?: unknown;
+};
 
 function finish(result: Result): never {
   console.log(MARK + JSON.stringify(result));
@@ -68,20 +75,20 @@ if (typeof module !== "object" || module === null) {
   });
 }
 
-// The server's error names a capability by its place in the list; name it
-// as the module does.
 try {
   const context = buildContext(module);
   const size = Buffer.byteLength(JSON.stringify(context), "utf8");
   if (size > MAX_CONTEXT) {
     errors.push(
-      `the site context is ${Math.ceil(size / 1024)} KB, more than 64 KB. ` +
+      `the site context is ${Math.ceil(size / 1024)} KB, more than ${MAX_CONTEXT / 1024} KB. ` +
         "Shorten site.desc and the capabilities' desc",
     );
   }
   try {
     checkContext(context);
   } catch (error) {
+    // The server's error names a capability by its place in the list; name it
+    // as the module does.
     const text = firstLine(error).replace(
       /context\.capabilities\[(\d+)\]/,
       (all, i) => context.capabilities[Number(i)]?.name ?? all,
@@ -102,12 +109,7 @@ if (
 
 if (typeof capabilities === "object" && capabilities !== null) {
   for (const [name, capability] of Object.entries(capabilities)) {
-    const { level, confirm, args, output } = capability as {
-      level?: unknown;
-      confirm?: unknown;
-      args?: unknown;
-      output?: unknown;
-    };
+    const { level, confirm, args, output } = capability as Capability;
     const asks = ["write", "destructive", "external"].includes(String(level));
     if (asks && typeof confirm !== "function") {
       errors.push(

@@ -6,6 +6,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, readdirSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
 
+// The same as the MARK in load.ts.
 const MARK = "dicta-check-result:";
 const root = process.cwd();
 const sitesDir = join(root, "sites");
@@ -87,17 +88,19 @@ function load(tsconfig: string, index: string, result: Result) {
 
 function checkSite(name: string): Result {
   const result: Result = { errors: [], warnings: [], notes: [] };
+  if (!existsSync(join(sitesDir, name))) {
+    result.errors.push(`there is no folder sites/${name}`);
+    return result;
+  }
   const moduleDir = join(sitesDir, name, "module");
   const index = join(moduleDir, "index.ts");
   const local = join(moduleDir, "tsconfig.local.json");
   const shared = join(moduleDir, "tsconfig.json");
-  if (!existsSync(index)) {
-    result.errors.push(`${relative(root, index)} is missing`);
-    return result;
-  }
-  if (!existsSync(shared)) {
-    result.errors.push(`${relative(root, shared)} is missing`);
-    return result;
+  for (const file of [index, shared]) {
+    if (!existsSync(file)) {
+      result.errors.push(`${relative(root, file)} is missing`);
+      return result;
+    }
   }
   const tsconfig = existsSync(local) ? local : shared;
   typeCheck(tsconfig, moduleDir, result);
@@ -131,11 +134,6 @@ if (names.length === 0) {
   console.log("No sites yet. Each site has a folder in sites/.");
 }
 for (const name of names) {
-  if (!existsSync(join(sitesDir, name))) {
-    console.log(`${name}\n  error: there is no folder sites/${name}\n`);
-    errors += 1;
-    continue;
-  }
   const result = checkSite(name);
   console.log(name);
   for (const text of result.errors) console.log(`  error: ${text}`);
